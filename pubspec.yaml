@@ -1,0 +1,65 @@
+name: keiba_ai_yosou
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  http: ^1.2.0
+  provider: ^6.0.5
+  url_launcher: ^6.2.5
+  intl: ^0.19.0
+  cupertino_icons: ^1.0.8
+  html: ^0.15.4
+  logging: ^1.2.0
+  cached_network_image: ^3.4.1
+  flutter_html: ^3.0.0
+  firebase_core: ^3.6.0
+  firebase_messaging: ^15.1.3
+  flutter_local_notifications: ^17.2.3
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/home_top_banner.png
+    - assets/images/home_top_banner_new.png
+    - assets/images/home_header_new.png
+    - assets/images/home_header_No.1.png  
+    - assets/images/blog1.png
+    - assets/images/blog2.png
+    - assets/images/blog3.png
+    - assets/images/prediction_banner.png
+    - assets/images/prediction_top_banner.png   
+    - assets/images/prediction_banner_new.png
+    - assets/images/prediction_header_No.1.png
+    - assets/icon/icon.png
+    - assets/icon/background.png
+    - assets/icon/foreground.png
+
+flutter_launcher_icons:
+
+  android: true
+
+  ios: true
+
+  image_path: "assets/icon/icon.png"
+
+  adaptive_icon_background:
+      "assets/icon/background.png"
+
+  adaptive_icon_foreground:
+      "assets/icon/foreground.png"
