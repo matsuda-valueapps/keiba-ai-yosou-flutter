@@ -17,7 +17,7 @@ plugins {
 
 android {
 
-    namespace = "com.example.keiba_ai_yosou"
+    namespace = "com.keiba_ai_yosou"
 
     compileSdk = flutter.compileSdkVersion
 
@@ -55,7 +55,7 @@ android {
     defaultConfig {
 
         applicationId =
-            "com.example.keiba_ai_yosou"
+            "com.keiba_ai_yosou"
 
         minSdk =
             flutter.minSdkVersion
