@@ -15,6 +15,7 @@ import '../providers/banner_provider.dart';
 import '../providers/scroll_top_provider.dart';
 
 import '../widgets/bottom_banner.dart';
+import '../widgets/admob_banner_widget.dart';
 
 class ReviewPage extends StatefulWidget {
 
@@ -1074,7 +1075,7 @@ class _ReviewPageState
                     // =========================
                     itemCount:
                         reviews.length +
-                            2,
+                            3,
 
                     itemBuilder:
                         (
@@ -1196,18 +1197,43 @@ class _ReviewPageState
                       }
 
                       // =========================
+                      // 🔥 AdMob
+                      // クチコミ3件目と4件目の間
+                      // =========================
+                      if (index == 4) {
+
+                        return const Padding(
+
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+
+                          child: AdmobBannerWidget(
+
+                            adUnitId:
+                                'ca-app-pub-7409422327092258/9138551624',
+                          ),
+                        );
+                      }
+                      
+                      // =========================
                       // 🔥 最下部フォーム
                       // =========================
                       if (index ==
                           reviews.length +
-                              1) {
+                              2) {
 
                         return buildReviewForm();
                       }
 
+                      final reviewIndex =
+                          index > 4
+                              ? index - 2
+                              : index - 1;
+
                       final r =
-                          reviews[
-                              index - 1];
+                          reviews[reviewIndex];
 
                       final rawImage =
                           r["image_url"]

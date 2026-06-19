@@ -22,7 +22,7 @@ import 'blog_detail_page.dart';
 // ⭐ Banner
 // =========================
 import '../widgets/bottom_banner.dart';
-
+import '../widgets/admob_banner_widget.dart';
 import '../providers/banner_provider.dart';
 
 // =========================
@@ -643,9 +643,53 @@ class _BlogPageState
 
                       else
 
-                        ...blogs.map(
-                          (b) =>
-                              blogCard(b),
+                        ...List.generate(
+
+                          blogs.length +
+
+                              // 4件以上なら広告1個追加
+                              (blogs.length >= 4 ? 1 : 0),
+
+                          (index) {
+
+                            // =========================
+                            // 🔥 記事3件目と4件目の間
+                            // =========================
+                            if (
+                                blogs.length >= 4 &&
+                                index == 3) {
+
+                              return const Padding(
+
+                                      padding:
+                                          EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                        vertical: 12,
+                                      ),
+
+                                      child: AdmobBannerWidget(
+
+                                        // blog_banner
+                                        adUnitId:
+                                            'ca-app-pub-7409422327092258/3007991614',
+                                      ),
+                                    );
+                            }
+
+                            // =========================
+                            // 広告以降はIndex補正
+                            // =========================
+                            final blogIndex =
+
+                                blogs.length >= 4 &&
+                                        index > 3
+                                    ? index - 1
+                                    : index;
+
+                            return blogCard(
+                              blogs[blogIndex],
+                            );
+                          },
                         ),
 
                       const SizedBox(

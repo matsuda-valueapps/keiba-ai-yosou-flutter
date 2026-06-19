@@ -15,6 +15,7 @@ import '../models/ranking_model.dart';
 import '../widgets/hit_ranking_card.dart';
 import '../widgets/trend_ranking_card.dart';
 import '../widgets/bottom_banner.dart';
+import '../widgets/admob_banner_widget.dart';
 
 class RankingPage extends StatefulWidget {
 
@@ -556,21 +557,59 @@ class _RankingPageState
 
                           // =========================
                           // ランキング一覧
+                          // 3位と4位の間にAdMob
                           // =========================
-                          ...displayList.map(
-                            (e) {
+                          ...List.generate(
+
+                            displayList.length +
+
+                                1, // 広告1個追加
+
+                            (index) {
+
+                              // =========================
+                              // 3位の次に広告
+                              // =========================
+                              if (index == 3) {
+
+                                return const Padding(
+
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 8,
+                                  ),
+
+                                  child: AdmobBannerWidget(
+
+                                    adUnitId:
+                                        'ca-app-pub-7409422327092258/2912054628',
+                                  ),
+                                );
+                              }
+
+                              // =========================
+                              // 広告以降はindex補正
+                              // =========================
+                              final adjustedIndex =
+                                  index > 3
+                                      ? index - 1
+                                      : index;
+
+                              final ranking =
+                                  displayList[
+                                      adjustedIndex];
 
                               if (
                                   provider.tabIndex ==
                                   0) {
 
                                 return HitRankingCard(
-                                  ranking: e,
+                                  ranking: ranking,
                                 );
                               }
 
                               return TrendRankingCard(
-                                ranking: e,
+                                ranking: ranking,
                               );
                             },
                           ),

@@ -4,6 +4,7 @@ import 'package:logging/logging.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // =========================
 // 🔥 Google Fonts追加
@@ -74,6 +75,11 @@ Future<void> main() async {
         DefaultFirebaseOptions
             .currentPlatform,
   );
+
+  // =========================
+  // 🔥 AdMob初期化
+  // =========================
+  await MobileAds.instance.initialize();
 
   // =========================
   // 🔥 Background Message

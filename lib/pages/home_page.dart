@@ -17,6 +17,7 @@ import '../widgets/hit_ranking_card.dart';
 import '../widgets/trend_ranking_card.dart';
 import '../widgets/ranking_header.dart';
 import '../widgets/bottom_banner.dart';
+import '../widgets/admob_banner_widget.dart';
 
 import '../models/site_model.dart';
 
@@ -223,6 +224,7 @@ class _HomePageState
                         .take(3)
                         .length +
                     1 +
+                    1 + // AdMob
                     provider
                         .trendRankings
                         .take(3)
@@ -368,6 +370,28 @@ class _HomePageState
                                 .white,
                           ),
                         ),
+                      ),
+                    );
+                  }
+
+                  currentIndex++;
+
+                  // =========================
+                  // 🔥 AdMob
+                  // 高額的中と的中数の間
+                  // =========================
+                  if (index == currentIndex) {
+
+                    return const Padding(
+
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+
+                      child: AdmobBannerWidget(
+                        adUnitId:
+                            'ca-app-pub-7409422327092258/1674994570',
                       ),
                     );
                   }
