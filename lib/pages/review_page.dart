@@ -1196,6 +1196,46 @@ class _ReviewPageState
                         );
                       }
 
+                      // =====================
+                      // クチコミ0件対応
+                      // =====================
+                      if (reviews.isEmpty) {
+
+                        if (index == 1) {
+
+                          return const Padding(
+
+                            padding: EdgeInsets.symmetric(
+                              vertical: 30,
+                            ),
+
+                            child: Center(
+
+                              child: Text(
+
+                                "クチコミはまだありません",
+
+                                style: TextStyle(
+
+                                  fontSize: 16,
+
+                                  fontWeight:
+                                      FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+
+                        // 投稿フォーム
+                        if (index == 2) {
+
+                          return buildReviewForm();
+                        }
+
+                        return const SizedBox();
+                      }
+
                       // =========================
                       // 🔥 AdMob
                       // クチコミ3件目と4件目の間
@@ -1217,6 +1257,8 @@ class _ReviewPageState
                         );
                       }
                       
+                      // reviews.isEmpty の場合は
+                      // 上で buildReviewForm() を返している
                       // =========================
                       // 🔥 最下部フォーム
                       // =========================
@@ -1231,6 +1273,15 @@ class _ReviewPageState
                           index > 4
                               ? index - 2
                               : index - 1;
+
+                      // =========================
+                      // 安全対策
+                      // =========================
+                      if (reviewIndex < 0 ||
+                          reviewIndex >= reviews.length) {
+
+                        return const SizedBox();
+                      }
 
                       final r =
                           reviews[reviewIndex];

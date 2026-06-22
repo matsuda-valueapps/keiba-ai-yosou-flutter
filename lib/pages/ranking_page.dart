@@ -218,12 +218,16 @@ class _RankingPageState
             .rankingController;
 
     final displayList =
-        buildDummy(
+    provider.rankings.isEmpty
 
-      provider.rankings,
+        ? <RankingModel>[]
 
-      provider.tabIndex == 0,
-    );
+        : buildDummy(
+
+            provider.rankings,
+
+            provider.tabIndex == 0,
+          );
 
     return Scaffold(
 
@@ -555,6 +559,37 @@ class _RankingPageState
                             height: 16,
                           ),
 
+                          // =========================
+                          // ランキング0件
+                          // =========================
+                          if (displayList.isEmpty)
+
+                            const Padding(
+
+                              padding: EdgeInsets.symmetric(
+                                vertical: 40,
+                                horizontal: 20,
+                            ),
+
+                            child: Center(
+
+                              child: Text(
+
+                                "現在ランキングはありません",
+
+                                style: TextStyle(
+
+                                  fontSize: 16,
+
+                                  fontWeight:
+                                      FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+
+                          else
+                          
                           // =========================
                           // ランキング一覧
                           // 3位と4位の間にAdMob
