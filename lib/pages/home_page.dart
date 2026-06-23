@@ -107,26 +107,6 @@ class _HomePageState
       );
     }
 
-    // =========================
-    // データなし
-    // =========================
-    if (
-        provider.sites.isEmpty &&
-        provider.rankings.isEmpty &&
-        provider.trendRankings
-            .isEmpty) {
-
-      return const Scaffold(
-
-        body: Center(
-
-          child: Text(
-            "データがありません",
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
 
       backgroundColor:
@@ -287,7 +267,40 @@ class _HomePageState
 
                   currentIndex++;
 
+                  // =========================
+                  // 高額的中ランキング0件
+                  // =========================
+                  if (provider.rankings.isEmpty &&
+                      index == currentIndex) {
+
+                    return const Padding(
+
+                      padding: EdgeInsets.symmetric(
+                        vertical: 20,
+                      ),
+
+                      child: Center(
+
+                        child: Text(
+
+                          "現在ランキングはありません",
+
+                          style: TextStyle(
+
+                            fontSize: 16,
+
+                            fontWeight:
+                                FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
+                  currentIndex++;
+
                   if (
+                      provider.rankings.isNotEmpty &&
                       index <
                           currentIndex +
                               provider
@@ -295,12 +308,21 @@ class _HomePageState
                                   .take(3)
                                   .length) {
 
+                    final rankingIndex =
+                        index - currentIndex;
+
+                    if (
+                        rankingIndex < 0 ||
+                        rankingIndex >=
+                            provider.rankings.length) {
+
+                      return const SizedBox();
+                    }
+
                     final item =
                         provider.rankings
                             .take(3)
-                            .toList()[
-                                index -
-                                    currentIndex];
+                            .toList()[rankingIndex];
 
                     return HitRankingCard(
                       ranking: item,
@@ -316,8 +338,8 @@ class _HomePageState
                   // もっと見る
                   // =========================
                   if (
-                      index ==
-                          currentIndex) {
+                      provider.rankings.isNotEmpty &&
+                      index == currentIndex) {
 
                     return Center(
 
@@ -417,7 +439,40 @@ class _HomePageState
 
                   currentIndex++;
 
+                  // =========================
+                  // 的中数ランキング0件
+                  // =========================
+                  if (provider.trendRankings.isEmpty &&
+                      index == currentIndex) {
+
+                    return const Padding(
+
+                      padding: EdgeInsets.symmetric(
+                        vertical: 20,
+                      ),
+
+                      child: Center(
+
+                        child: Text(
+
+                          "現在ランキングはありません",
+
+                          style: TextStyle(
+
+                            fontSize: 16,
+
+                            fontWeight:
+                                FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
+                  currentIndex++;
+
                   if (
+                      provider.trendRankings.isNotEmpty &&
                       index <
                           currentIndex +
                               provider
@@ -425,13 +480,22 @@ class _HomePageState
                                   .take(3)
                                   .length) {
 
+                    final rankingIndex =
+                        index - currentIndex;
+
+                    if (
+                        rankingIndex < 0 ||
+                        rankingIndex >=
+                            provider.trendRankings.length) {
+
+                      return const SizedBox();
+                    }
+
                     final item =
                         provider
                             .trendRankings
                             .take(3)
-                            .toList()[
-                                index -
-                                    currentIndex];
+                            .toList()[rankingIndex];
 
                     return TrendRankingCard(
                       ranking: item,
@@ -448,8 +512,8 @@ class _HomePageState
                   // もっと見る
                   // =========================
                   if (
-                      index ==
-                          currentIndex) {
+                      provider.trendRankings.isNotEmpty &&
+                      index == currentIndex) {
 
                     return Center(
 
@@ -509,7 +573,7 @@ class _HomePageState
                   currentIndex++;
 
                   // =========================
-                  // おすすめサイト
+                  // 優良競馬サイト一覧
                   // =========================
                   if (
                       index ==
@@ -531,22 +595,62 @@ class _HomePageState
 
                   currentIndex++;
 
-                  if (
-                      index <
-                          currentIndex +
-                              provider
-                                  .sites
-                                  .length) {
+                  // =========================
+                  // 掲載サイト0件
+                  // =========================
+                  if (provider.sites.isEmpty &&
+                      index == currentIndex) {
 
-                    final SiteModel site =
-                        provider.sites[
-                            index -
-                                currentIndex];
+                    return const Padding(
 
-                    return SiteCard(
-                      site: site,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 20,
+                      ),
+
+                      child: Center(
+
+                        child: Text(
+
+                          "現在掲載サイトはありません",
+
+                          style: TextStyle(
+
+                            fontSize: 16,
+
+                            fontWeight:
+                                FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     );
                   }
+
+                  currentIndex++;
+
+                  if (
+                      provider.sites.isNotEmpty &&
+                      index <
+                          currentIndex +
+                              provider.sites.length) {
+
+                    final siteIndex =
+                        index - currentIndex;
+
+                    if (
+                        siteIndex < 0 ||
+                        siteIndex >=
+                            provider.sites.length) {
+
+                      return const SizedBox();
+                    }
+
+                    final SiteModel site =
+                        provider.sites[siteIndex];
+
+                        return SiteCard(
+                          site: site,
+                        );
+                      }
 
                   return const SizedBox(
                     height: 40,
