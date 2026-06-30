@@ -50,3 +50,6 @@ firebase/serviceAccountKey.json
 # Firebase Config Files
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+key.properties
+upload-keystore.jks
