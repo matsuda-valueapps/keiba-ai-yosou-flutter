@@ -290,7 +290,7 @@ class _BlogPageState
                           FontWeight.bold,
 
                       color:
-                          Colors.blue,
+                          Color(0xFF0D47A1),
                     ),
                   ),
 
@@ -481,7 +481,7 @@ class _BlogPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFFE91E63),
+            Color(0xFF0D47A1),
 
         centerTitle: true,
 
@@ -490,7 +490,7 @@ class _BlogPageState
 
         title: const Text(
 
-          "競馬ブログ",
+          "競馬AI予想",
 
           style: TextStyle(
 
@@ -550,7 +550,7 @@ class _BlogPageState
                                 TextStyle(
 
                               color:
-                                  Color(0xFFE91E63),
+                                  Color(0xFF0D47A1),
 
                               fontSize:
                                   34,

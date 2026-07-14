@@ -682,7 +682,7 @@ class _ReviewPageState
 
                 backgroundColor:
                     const Color(
-                  0xFFF44336,
+                  0xFFE91E63,
                 ),
 
                 shape:
@@ -833,7 +833,7 @@ class _ReviewPageState
                                   .bold,
 
                           color:
-                              Colors.blue,
+                              Color(0xFF0D47A1),
                         ),
                       ),
 
@@ -953,7 +953,7 @@ class _ReviewPageState
 
                   backgroundColor:
                       const Color(
-                    0xFFF44336,
+                    0xFFE91E63,
                   ),
 
                   foregroundColor:
@@ -980,7 +980,7 @@ class _ReviewPageState
 
                 child: const Text(
 
-                  "無料で確認する！",
+                  "サイトを確認する！",
 
                   style: TextStyle(
 
@@ -1024,7 +1024,7 @@ class _ReviewPageState
 
         backgroundColor:
             const Color(
-          0xFFF44336,
+          0xFF0D47A1,
         ),
 
         centerTitle: true,
@@ -1034,7 +1034,7 @@ class _ReviewPageState
 
         title: const Text(
 
-          "クチコミ.COM",
+          "競馬AI予想",
 
           style: TextStyle(
 
@@ -1112,8 +1112,7 @@ class _ReviewPageState
                                       TextStyle(
 
                                     color:
-                                        Colors
-                                            .red,
+                                        Color(0xFF0D47A1),
 
                                     fontSize:
                                         34,

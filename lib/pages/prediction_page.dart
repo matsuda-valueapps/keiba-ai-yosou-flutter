@@ -351,7 +351,7 @@ class _PredictionPageState
 
           style: const TextStyle(
 
-            color: Colors.blue,
+            color: Color(0xFF0D47A1),
 
             fontWeight:
                 FontWeight.bold,
@@ -491,7 +491,7 @@ class _PredictionPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFF4CAF50),
+            Color(0xFF0D47A1),
 
         centerTitle: true,
 
@@ -564,7 +564,7 @@ class _PredictionPageState
 
                               child: Image.asset(
 
-                                'assets/images/prediction_header_No.1.png',
+                                'assets/images/header3.png',
 
                                 fit: BoxFit.contain,
                               ),
@@ -650,7 +650,7 @@ class _PredictionPageState
 
                                 border: Border.all(
                                   color:
-                                      Colors.green,
+                                      Colors.blue.shade900,
                                   width: 2,
                                 ),
                               ),
@@ -687,7 +687,7 @@ class _PredictionPageState
 
                             child: Text(
 
-                              "※20歳未満の方は、競馬法により馬券(勝馬投票券)を購入したり、譲り受けてはいけない事になっていますので、注意して下さい。",
+                              "※推奨馬は的中を保証するものではありません。",
 
                               style: TextStyle(
 
@@ -763,7 +763,7 @@ class _PredictionPageState
 
                                 child: Text(
 
-                                  "▼ 優良サイトの無料予想を入手 ▼",
+                                  "▼ 競馬サイトの予想を入手 ▼",
 
                                   style:
                                       TextStyle(

@@ -237,7 +237,7 @@ class _RankingPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFFFFEB3B),
+            Color(0xFF0D47A1),
 
         centerTitle: true,
 
@@ -247,8 +247,8 @@ class _RankingPageState
         title: Text(
 
           provider.tabIndex == 0
-              ? "高額的中ランキング"
-              : "的中数ランキング",
+              ? "競馬AI予想"
+              : "競馬AI予想",
 
           style: const TextStyle(
 
@@ -310,7 +310,7 @@ class _RankingPageState
                                     const TextStyle(
 
                                   color:
-                                      Color(0xFFFBC02D),
+                                      Color(0xFF0D47A1),
 
                                   fontSize: 32,
 

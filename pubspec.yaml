@@ -30,7 +30,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  flutter_launcher_icons: "^0.13.1"
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
@@ -39,7 +39,10 @@ flutter:
     - assets/images/home_top_banner.png
     - assets/images/home_top_banner_new.png
     - assets/images/home_header_new.png
-    - assets/images/home_header_No.1.png  
+    - assets/images/home_header_No.1.png
+    - assets/images/header.png    
+    - assets/images/header2.png
+    - assets/images/header3.png
     - assets/images/blog1.png
     - assets/images/blog2.png
     - assets/images/blog3.png
@@ -48,8 +51,6 @@ flutter:
     - assets/images/prediction_banner_new.png
     - assets/images/prediction_header_No.1.png
     - assets/icon/icon.png
-    - assets/icon/background.png
-    - assets/icon/foreground.png
 
 flutter_launcher_icons:
 
@@ -60,7 +61,7 @@ flutter_launcher_icons:
   image_path: "assets/icon/icon.png"
 
   adaptive_icon_background:
-      "assets/icon/background.png"
+      "#0D47A1"
 
   adaptive_icon_foreground:
-      "assets/icon/foreground.png"
+      "assets/icon/icon.png"

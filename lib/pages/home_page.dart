@@ -118,7 +118,7 @@ class _HomePageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFF2196F3),
+            Color(0xFF0D47A1),
 
         centerTitle: true,
 
@@ -131,7 +131,7 @@ class _HomePageState
 
         title: const Text(
 
-          "ホーム",
+          "競馬AI予想",
 
           style: TextStyle(
 
@@ -239,7 +239,7 @@ class _HomePageState
 
                         child: Image.asset(
 
-                          'assets/images/home_header_No.1.png',
+                          'assets/images/header.png',
 
                           fit: BoxFit.contain,
                         ),
@@ -351,7 +351,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Colors.blue,
+                              Color(0xFF0D47A1),
 
                           padding:
                               const EdgeInsets
@@ -525,7 +525,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Colors.blue,
+                              Color(0xFF0D47A1),
 
                           padding:
                               const EdgeInsets
@@ -573,7 +573,7 @@ class _HomePageState
                   currentIndex++;
 
                   // =========================
-                  // 優良競馬サイト一覧
+                  // おすすめ競馬サイト
                   // =========================
                   if (
                       index ==
@@ -582,7 +582,7 @@ class _HomePageState
                     return const RankingHeader(
 
                       title:
-                          "優良競馬サイト一覧",
+                          "おすすめ競馬サイト",
 
                       icon: Icons.star,
 

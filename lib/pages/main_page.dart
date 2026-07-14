@@ -286,7 +286,7 @@ class _MainPageState
                 .fixed,
 
         backgroundColor:
-            Colors.black,
+            Color(0xFF0D47A1),
 
         // =========================
         // 🔥 ラベル白
@@ -319,13 +319,13 @@ class _MainPageState
             icon: Icon(
               Icons.home,
               color:
-                  Color(0xFF1976D2),
+                  Colors.grey,
             ),
 
             activeIcon: Icon(
               Icons.home,
               color:
-                  Color(0xFF2196F3),
+                  Colors.white,
             ),
 
             label: "ホーム",
@@ -339,13 +339,13 @@ class _MainPageState
             icon: Icon(
               Icons.emoji_events,
               color:
-                  Color(0xFFFBC02D),
+                  Colors.grey,
             ),
 
             activeIcon: Icon(
               Icons.emoji_events,
               color:
-                  Color(0xFFFFEB3B),
+                  Colors.white,
             ),
 
             label: "ランキング",
@@ -359,13 +359,13 @@ class _MainPageState
             icon: Icon(
               Icons.chat_bubble,
               color:
-                  Color(0xFFD32F2F),
+                  Colors.grey,
             ),
 
             activeIcon: Icon(
               Icons.chat_bubble,
               color:
-                  Color(0xFFF44336),
+                  Colors.white,
             ),
 
             label: "クチコミ",
@@ -379,16 +379,16 @@ class _MainPageState
             icon: Icon(
               Icons.article,
               color:
-                  Color(0xFFC2185B),
+                  Colors.grey,
             ),
 
             activeIcon: Icon(
               Icons.article,
               color:
-                  Color(0xFFE91E63),
+                  Colors.white,
             ),
 
-            label: "競馬ブログ",
+            label: "ブログ",
           ),
 
           // =========================
@@ -399,16 +399,16 @@ class _MainPageState
             icon: Icon(
               Icons.show_chart,
               color:
-                  Color(0xFF388E3C),
+                  Colors.grey,
             ),
 
             activeIcon: Icon(
               Icons.show_chart,
               color:
-                  Color(0xFF4CAF50),
+                  Colors.white,
             ),
 
-            label: "無料予想",
+            label: "AI予想",
           ),
         ],
       ),
