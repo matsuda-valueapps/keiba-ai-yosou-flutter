@@ -173,8 +173,12 @@ class TrendRankingCard extends StatelessWidget {
         vertical: 6,
       ),
 
-      padding:
-          const EdgeInsets.all(14),
+      padding: const EdgeInsets.fromLTRB(
+        8,
+        14,
+        14,
+        14,
+      ),
 
       decoration: BoxDecoration(
 
@@ -185,13 +189,17 @@ class TrendRankingCard extends StatelessWidget {
 
         gradient: LinearGradient(
 
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+
           colors: [
 
-            color.withValues(
-              alpha: .15,
-            ),
+            ranking.rank <= 3
+                ? color.withValues(alpha: .15)
+                : const Color(0xFFBBDEFB),
 
-            Colors.white,
+          Colors.white,
+
           ],
         ),
       ),
@@ -211,102 +219,112 @@ class TrendRankingCard extends StatelessWidget {
             children: [
 
               // =========================
-              // メダル
+              // ⭐ 順位表示
+              // 1～3位：メダル画像
+              // 4位以下：青丸＋順位
               // =========================
-              Stack(
+              ranking.rank <= 3
 
-                clipBehavior:
-                    Clip.none,
+                  ? Container(
 
-                children: [
+                      width: 110,
+                      height: 110,
 
-                  Container(
+                      decoration: BoxDecoration(
 
-                    width: 80,
+                        shape: BoxShape.circle,
 
-                    height: 80,
+                        boxShadow: [
 
-                    decoration:
-                        BoxDecoration(
+                          BoxShadow(
 
-                      shape:
-                          BoxShape.circle,
+                            color: Colors.black.withValues(alpha: 0.08),
 
-                      gradient:
-                          LinearGradient(
+                            blurRadius: 6,
 
-                        colors: [
+                            spreadRadius: 0,
 
-                          color.withValues(
-                            alpha: .8,
+                            offset: const Offset(0, 2),
+
                           ),
 
-                          color,
                         ],
                       ),
-                    ),
 
-                    child: Center(
+                      child: ClipOval(
+
+                        child: Image.asset(
+
+                          ranking.rank == 1
+                              ? 'assets/images/medal_gold.png'
+                              : ranking.rank == 2
+                                  ? 'assets/images/medal_silver.png'
+                                  : 'assets/images/medal_bronze.png',
+
+                          width: 100,
+                          height: 100,
+
+                          fit: BoxFit.cover,
+
+                        ),
+                      ),
+                    )
+
+                  : Container(
+
+                      width: 80,
+                      height: 80,
+
+                      decoration: BoxDecoration(
+
+                        shape: BoxShape.circle,
+
+                        gradient: const LinearGradient(
+
+                          colors: [
+
+                          Color(0xFF42A5F5),
+
+                          Color(0xFF1976D2),
+
+                          ],
+                        ),
+
+                        boxShadow: [
+
+                          BoxShadow(
+
+                            color: Colors.black.withValues(alpha: 0.08),
+
+                            blurRadius: 4,
+
+                            offset: const Offset(0, 1),
+
+                          ),
+
+                        ],
+                      ),
+
+                      alignment: Alignment.center,
 
                       child: Text(
 
-                        ranking.rank
-                            .toString(),
+                        ranking.rank.toString(),
 
-                        style:
-                            const TextStyle(
+                        style: const TextStyle(
 
-                          color:
-                              Colors.white,
+                          color: Colors.white,
 
-                          fontSize: 30,
+                          fontSize: 34,
 
-                          fontWeight:
-                              FontWeight
-                                  .bold,
+                          fontWeight: FontWeight.bold,
+
                         ),
                       ),
                     ),
-                  ),
-
-                  Positioned(
-
-                    top: -10,
-
-                    right: -10,
-
-                    child: Container(
-
-                      padding:
-                          const EdgeInsets
-                              .all(4),
-
-                      decoration:
-                          const BoxDecoration(
-
-                        shape:
-                            BoxShape.circle,
-
-                        color:
-                            Colors.white,
-                      ),
-
-                      child: Icon(
-
-                        Icons
-                            .workspace_premium,
-
-                        color: color,
-
-                        size: 34,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
 
               const SizedBox(
-                width: 12,
+                width: 6,
               ),
 
               // =========================

@@ -285,95 +285,27 @@ class _RankingPageState
                         children: [
 
                           const SizedBox(
-                            height: 16,
-                          ),
-
-                          // =========================
-                          // タイトル
-                          // =========================
-                          Row(
-
-                            mainAxisAlignment:
-                                MainAxisAlignment
-                                    .center,
-
-                            children: [
-
-                              Text(
-
-                                provider.tabIndex ==
-                                        0
-                                    ? "高額的中"
-                                    : "的中数",
-
-                                style:
-                                    const TextStyle(
-
-                                  color:
-                                      Color(0xFF0D47A1),
-
-                                  fontSize: 32,
-
-                                  fontWeight:
-                                      FontWeight.bold,
-                                ),
-                              ),
-
-                              const SizedBox(
-                                width: 6,
-                              ),
-
-                              const Icon(
-                                Icons.gps_fixed,
-                                size: 28,
-                              ),
-
-                              const SizedBox(
-                                width: 6,
-                              ),
-
-                              const Text(
-
-                                "ランキング",
-
-                                style:
-                                    TextStyle(
-
-                                  fontSize: 32,
-
-                                  fontWeight:
-                                      FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          const SizedBox(
                             height: 12,
                           ),
 
-                          // =========================
-                          // 説明
-                          // =========================
-                          const Padding(
+                          Padding(
 
-                            padding:
-                                EdgeInsets.symmetric(
-                              horizontal:
-                                  16,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
                             ),
 
-                            child: Text(
+                            child: ClipRRect(
 
-                              "的中金額が高額なサイト、的中数が多いサイトを、ランキング形式でご紹介しますので、競馬予想サイト選びの参考にして下さい！",
+                              borderRadius:
+                                  BorderRadius.circular(18),
 
-                              style:
-                                  TextStyle(
+                              child: Image.asset(
 
-                                fontWeight:
-                                    FontWeight.bold,
+                                provider.tabIndex == 0
+                                    ? 'assets/images/ranking_header1.png'
+                                    : 'assets/images/ranking_header2.png',
 
-                                fontSize: 15,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
@@ -437,13 +369,13 @@ class _RankingPageState
                                         color:
                                             provider.tabIndex ==
                                                     0
-                                                ? Colors.black
+                                                ? const Color(0xFF0D47A1)
                                                 : Colors.grey
                                                     .shade300,
 
                                         borderRadius:
                                             BorderRadius.circular(
-                                          16,
+                                          20,
                                         ),
                                       ),
 
@@ -462,7 +394,7 @@ class _RankingPageState
                                                 provider.tabIndex ==
                                                         0
                                                     ? Colors.white
-                                                    : Colors.black,
+                                                    : Colors.blue[900],
 
                                             fontWeight:
                                                 FontWeight.bold,
@@ -516,7 +448,7 @@ class _RankingPageState
                                         color:
                                             provider.tabIndex ==
                                                     1
-                                                ? Colors.black
+                                                ? const Color(0xFF0D47A1)
                                                 : Colors.grey
                                                     .shade300,
 
@@ -541,7 +473,7 @@ class _RankingPageState
                                                 provider.tabIndex ==
                                                         1
                                                     ? Colors.white
-                                                    : Colors.black,
+                                                    : Colors.blue[900],
 
                                             fontWeight:
                                                 FontWeight.bold,

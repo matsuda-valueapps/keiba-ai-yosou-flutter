@@ -531,97 +531,30 @@ class _BlogPageState
                     children: [
 
                       const SizedBox(
-                        height: 16,
+                        height: 12,
                       ),
 
-                      Row(
+                      Padding(
 
-                        mainAxisAlignment:
-                            MainAxisAlignment
-                                .center,
-
-                        children: const [
-
-                          Text(
-
-                            "競馬",
-
-                            style:
-                                TextStyle(
-
-                              color:
-                                  Color(0xFF0D47A1),
-
-                              fontSize:
-                                  34,
-
-                              fontWeight:
-                                  FontWeight
-                                      .bold,
-                            ),
-                          ),
-
-                          SizedBox(
-                            width: 6,
-                          ),
-
-                          Icon(
-                            Icons.menu_book,
-                            size: 30,
-                          ),
-
-                          SizedBox(
-                            width: 6,
-                          ),
-
-                          Text(
-
-                            "ブログ",
-
-                            style:
-                                TextStyle(
-
-                              fontSize: 34,
-
-                              fontWeight:
-                                  FontWeight
-                                      .bold,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      const Padding(
-
-                        padding:
-                            EdgeInsets
-                                .symmetric(
-                          horizontal: 20,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
                         ),
 
-                        child: Text(
+                        child: ClipRRect(
 
-                          "競馬予想サイトの紹介や予想の検証等、サイト選びの役に立つブログを掲載しています！",
+                          borderRadius: BorderRadius.circular(18),
 
-                          textAlign:
-                              TextAlign.center,
+                          child: Image.asset(
 
-                          style: TextStyle(
+                            'assets/images/blog_header.png',
 
-                            fontSize: 15,
-
-                            fontWeight:
-                                FontWeight.bold,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
 
                       const SizedBox(
-                        height: 20,
+                        height: 14,
                       ),
 
                       if (blogs.isEmpty)

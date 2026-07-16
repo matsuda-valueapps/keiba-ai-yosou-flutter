@@ -36,20 +36,15 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/home_top_banner.png
-    - assets/images/home_top_banner_new.png
-    - assets/images/home_header_new.png
-    - assets/images/home_header_No.1.png
-    - assets/images/header.png    
-    - assets/images/header2.png
-    - assets/images/header3.png
-    - assets/images/blog1.png
-    - assets/images/blog2.png
-    - assets/images/blog3.png
-    - assets/images/prediction_banner.png
-    - assets/images/prediction_top_banner.png   
-    - assets/images/prediction_banner_new.png
-    - assets/images/prediction_header_No.1.png
+    - assets/images/home_header.png
+    - assets/images/ranking_header1.png
+    - assets/images/ranking_header2.png
+    - assets/images/review_header.png
+    - assets/images/blog_header.png            
+    - assets/images/prediction_header.png
+    - assets/images/medal_gold.png
+    - assets/images/medal_silver.png
+    - assets/images/medal_bronze.png
     - assets/icon/icon.png
 
 flutter_launcher_icons:

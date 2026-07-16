@@ -18,15 +18,18 @@ class RankingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    return Center(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.90,
+        child: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
         gradient: const LinearGradient(
           colors: [
-            Color(0xFF2B2B2B),
-            Color(0xFF4A4A4A),
+            Color(0xFF0D47A1),
+            Color(0xFF1565C0),
           ],
         ),
       ),
@@ -48,7 +51,7 @@ class RankingHeader extends StatelessWidget {
             const Text(
               "Ranking",
               style: TextStyle(
-                color: Colors.white70,
+                color: Colors.white,
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
               ),
@@ -65,6 +68,8 @@ class RankingHeader extends StatelessWidget {
           ],
         ],
       ),
-    );
-  }
+      ),
+    ),
+  );
+}
 }

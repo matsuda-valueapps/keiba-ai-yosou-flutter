@@ -15,6 +15,7 @@ import '../models/race_model.dart';
 
 import '../widgets/site_card.dart';
 import '../widgets/bottom_banner.dart';
+import '../widgets/ranking_header.dart';
 
 /// =========================
 /// 🔥 除外（部分一致対応）
@@ -544,7 +545,7 @@ class _PredictionPageState
                         children: [
 
                           const SizedBox(
-                            height: 10,
+                            height: 12,
                           ),
 
                           Padding(
@@ -552,27 +553,27 @@ class _PredictionPageState
                             padding:
                                 const EdgeInsets
                                     .symmetric(
-                              horizontal: 12,
+                              horizontal: 16,
                             ),
 
                             child: ClipRRect(
 
                               borderRadius:
                                   BorderRadius.circular(
-                                12,
+                                18,
                               ),
 
                               child: Image.asset(
 
-                                'assets/images/header3.png',
+                                'assets/images/prediction_header.png',
 
-                                fit: BoxFit.contain,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
 
                           const SizedBox(
-                            height: 10,
+                            height: 14,
                           ),
 
                           Container(
@@ -581,6 +582,7 @@ class _PredictionPageState
                                 const EdgeInsets
                                     .symmetric(
                               horizontal: 16,
+                              vertical: 6,
                             ),
 
                             padding:
@@ -591,8 +593,17 @@ class _PredictionPageState
                             alignment:
                                 Alignment.center,
 
-                            color:
-                                Colors.black87,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                Color(0xFF0D47A1),
+                                Color(0xFF1565C0),
+                                ],
+                              ),
+                            ),
 
                             child: Text(
 
@@ -606,6 +617,8 @@ class _PredictionPageState
 
                                 fontWeight:
                                     FontWeight.bold,
+
+                                fontSize: 18,
                               ),
                             ),
                           ),
@@ -660,7 +673,7 @@ class _PredictionPageState
                                 provider
                                         .selectedPlace
                                         .isEmpty
-                                    ? "タップして競馬場を選択して下さい！"
+                                    ? "競馬場を選択して下さい！"
                                     : provider
                                         .selectedPlace,
 
@@ -693,12 +706,14 @@ class _PredictionPageState
 
                                 fontWeight:
                                     FontWeight.bold,
+
+                                color: Colors.black54    
                               ),
                             ),
                           ),
 
                           const SizedBox(
-                            height: 16,
+                            height: 10,
                           ),
 
                           /// =========================
@@ -715,70 +730,14 @@ class _PredictionPageState
                           ),
 
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
 
-                          Padding(
-
-                            padding:
-                                const EdgeInsets
-                                    .symmetric(
-                              horizontal: 16,
-                            ),
-
-                            child: Container(
-
-                              padding:
-                                  const EdgeInsets
-                                      .symmetric(
-                                vertical: 14,
-                              ),
-
-                              decoration:
-                                  BoxDecoration(
-
-                                borderRadius:
-                                    BorderRadius.circular(
-                                  20,
-                                ),
-
-                                gradient:
-                                    const LinearGradient(
-
-                                  colors: [
-
-                                    Color(
-                                      0xFF3A3A3A,
-                                    ),
-
-                                    Color(
-                                      0xFF1F1F1F,
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              child:
-                                  const Center(
-
-                                child: Text(
-
-                                  "▼ 競馬サイトの予想を入手 ▼",
-
-                                  style:
-                                      TextStyle(
-
-                                    color:
-                                        Colors.white,
-
-                                    fontWeight:
-                                        FontWeight.bold,
-
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
-                            ),
+                          const RankingHeader(
+                            title: "▼ 競馬サイトの予想を入手 ▼",
+                              icon: Icons.star,
+                              showRankingText: false,
+                              showIcon: false,
                           ),
 
                           const SizedBox(

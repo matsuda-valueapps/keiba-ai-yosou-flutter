@@ -1090,107 +1090,36 @@ class _ReviewPageState
 
                         return Column(
 
-                          children: const [
+                          children: [
 
-                            SizedBox(
-                              height: 16,
-                            ),
-
-                            Row(
-
-                              mainAxisAlignment:
-                                  MainAxisAlignment
-                                      .center,
-
-                              children: [
-
-                                Text(
-
-                                  "クチコミ",
-
-                                  style:
-                                      TextStyle(
-
-                                    color:
-                                        Color(0xFF0D47A1),
-
-                                    fontSize:
-                                        34,
-
-                                    fontWeight:
-                                        FontWeight.bold,
-                                  ),
-                                ),
-
-                                SizedBox(
-                                  width: 6,
-                                ),
-
-                                Icon(
-
-                                  Icons
-                                      .chat_bubble_outline,
-
-                                  size: 30,
-                                ),
-
-                                SizedBox(
-                                  width: 6,
-                                ),
-
-                                Text(
-
-                                  ".COM",
-
-                                  style:
-                                      TextStyle(
-
-                                    fontSize:
-                                        34,
-
-                                    fontWeight:
-                                        FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            SizedBox(
-                              height: 10,
+                            const SizedBox(
+                              height: 12,
                             ),
 
                             Padding(
 
-                              padding:
-                                  EdgeInsets
-                                      .symmetric(
-                                horizontal:
-                                    20,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
                               ),
 
-                              child: Text(
+                              child: ClipRRect(
 
-                                "新着クチコミ一覧になります！",
+                                borderRadius:
+                                    BorderRadius.circular(18),
 
-                                textAlign:
-                                    TextAlign
-                                        .center,
+                                child: Image.asset(
 
-                                style:
-                                    TextStyle(
+                                  'assets/images/review_header.png',
 
-                                  fontSize:
-                                      15,
-
-                                  fontWeight:
-                                      FontWeight.bold,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
 
-                            SizedBox(
-                              height: 20,
+                            const SizedBox(
+                              height: 14,
                             ),
+
                           ],
                         );
                       }

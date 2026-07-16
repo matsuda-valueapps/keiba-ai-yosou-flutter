@@ -4,14 +4,10 @@ import '../models/ranking_model.dart';
 class RankingCard extends StatelessWidget {
   final RankingModel ranking;
 
-  const RankingCard({super.key, required this.ranking});
-
-  Color _getMedalColor(int rank) {
-    if (rank == 1) return const Color(0xFFFFD700);
-    if (rank == 2) return const Color(0xFFC0C0C0);
-    if (rank == 3) return const Color(0xFFCD7F32);
-    return Colors.grey;
-  }
+  const RankingCard({
+    super.key,
+    required this.ranking,
+  });
 
   /// ⭐ 表示値判定（rankingType廃止対応）
   String _buildValueText() {
@@ -30,10 +26,25 @@ class RankingCard extends StatelessWidget {
     );
   }
 
+  /// ⭐ ランク画像取得
+  String _getMedalImage() {
+    switch (ranking.rank) {
+      case 1:
+        return "assets/images/medal_gold.png";
+
+      case 2:
+        return "assets/images/medal_silver.png";
+
+      case 3:
+        return "assets/images/medal_bronze.png";
+
+      default:
+        return "assets/images/medal_bronze.png";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final medalColor = _getMedalColor(ranking.rank);
-
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(14),
@@ -44,35 +55,18 @@ class RankingCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 8,
-          )
+          ),
         ],
       ),
       child: Row(
         children: [
 
-          /// メダル
-          Container(
-            width: 56,
-            height: 56,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                colors: [
-                  medalColor.withValues(alpha: 0.7),
-                  medalColor,
-                ],
-              ),
-            ),
-            child: Center(
-              child: Text(
-                ranking.rank.toString(),
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+          /// ⭐ 金・銀・銅メダル
+          Image.asset(
+            _getMedalImage(),
+            width: 90,
+            height: 90,
+            fit: BoxFit.contain,
           ),
 
           const SizedBox(width: 14),
@@ -93,7 +87,6 @@ class RankingCard extends StatelessWidget {
 
                 const SizedBox(height: 6),
 
-                /// 🔥 修正済み（rankingType完全排除）
                 Text(
                   _buildValueText(),
                   style: const TextStyle(

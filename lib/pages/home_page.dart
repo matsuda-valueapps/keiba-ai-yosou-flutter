@@ -234,14 +234,14 @@ class _HomePageState
                         borderRadius:
                             BorderRadius
                                 .circular(
-                          12,
+                          18,
                         ),
 
                         child: Image.asset(
 
-                          'assets/images/header.png',
+                          'assets/images/home_header.png',
 
-                          fit: BoxFit.contain,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     );
