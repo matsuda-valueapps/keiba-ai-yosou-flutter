@@ -588,73 +588,54 @@ class TrendRankingCard extends StatelessWidget {
           ),
 
           const SizedBox(
-            height: 12,
+            height: 18,
           ),
 
           // =========================
           // ボタン
           // =========================
           Row(
-
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
               // =========================
-              // 的中詳細
+              // ブログ記事を読む
               // =========================
-              Expanded(
+              SizedBox(
+                width: 180,
 
                 child: ElevatedButton(
 
-                  style:
-                      ElevatedButton.styleFrom(
+                  style: ElevatedButton.styleFrom(
 
-                    backgroundColor:
-                        Color(0xFFE91E63),
+                    backgroundColor: const Color(0xFFE91E63),
 
-                    padding:
-                        const EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 14,
                     ),
 
-                    shape:
-                        RoundedRectangleBorder(
-
-                      borderRadius:
-                          BorderRadius.circular(
-                        14,
-                      ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
                     ),
 
                     elevation: 3,
                   ),
 
                   onPressed: () {
-
-                    openBlogDetail(
-                      context,
-                    );
+                    openBlogDetail(context);
                   },
 
                   child: const Text(
-
                     "競馬ブログを読む！",
-
                     style: TextStyle(
-
                       color: Colors.white,
-
-                      fontWeight:
-                          FontWeight.bold,
-
-                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
 
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 6),
 
               // =========================
               // 🏠

@@ -467,7 +467,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "サイト名を入力して下さい！",
+                  "サイト名を入力して下さい",
 
               border:
                   OutlineInputBorder(
@@ -512,7 +512,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "投稿者名を入力して下さい！",
+                  "投稿者名を入力して下さい",
 
               border:
                   OutlineInputBorder(
@@ -585,7 +585,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "クチコミを入力して下さい！",
+                  "クチコミを入力して下さい",
 
               border:
                   OutlineInputBorder(
@@ -618,95 +618,95 @@ class _ReviewPageState
             height: 24,
           ),
 
-          SizedBox(
+          Center(
+            child: SizedBox(
 
-            width: double.infinity,
+              width: 240,
 
-            height: 56,
+              height: 56,
 
-            child: ElevatedButton(
+              child: ElevatedButton(
 
-              onPressed: () {
+                onPressed: () {
 
-                showDialog(
+                  showDialog(
 
-                  context: context,
+                    context: context,
 
-                  builder: (_) {
+                    builder: (_) {
 
-                    return AlertDialog(
+                      return AlertDialog(
 
-                      title: const Text(
-                        "クチコミ送信完了",
-                      ),
-
-                      content: const Text(
-                        "投稿ありがとうございました！",
-                      ),
-
-                      actions: [
-
-                        TextButton(
-
-                          onPressed: () {
-
-                            Navigator.pop(
-                              context,
-                            );
-                          },
-
-                          child:
-                              const Text(
-                            "OK",
-                          ),
+                        title: const Text(
+                          "クチコミ送信完了",
                         ),
-                      ],
-                    );
-                  },
-                );
 
-                siteController.clear();
+                        content: const Text(
+                          "投稿ありがとうございました！",
+                        ),
 
-                userController.clear();
+                        actions: [
 
-                commentController.clear();
+                          TextButton(
 
-                setState(() {
+                            onPressed: () {
 
-                  selectedRating = 5;
-                });
-              },
+                              Navigator.pop(context);
+                            },
 
-              style:
-                  ElevatedButton.styleFrom(
+                            child: const Text(
+                              "OK",
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
 
-                backgroundColor:
-                    const Color(
-                  0xFFE91E63,
-                ),
+                  siteController.clear();
 
-                shape:
-                    RoundedRectangleBorder(
+                  userController.clear();
 
-                  borderRadius:
-                      BorderRadius.circular(
-                    14,
+                  commentController.clear();
+
+                  setState(() {
+
+                    selectedRating = 5;
+                  });
+                },
+
+                style: ElevatedButton.styleFrom(
+
+                  backgroundColor: const Color(
+                    0xFFE91E63,
+                  ),
+
+                  shape: RoundedRectangleBorder(
+
+                    borderRadius: BorderRadius.circular(
+                      14,
+                    ),
+                  ),
+
+                  elevation: 3,
+
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 14,
                   ),
                 ),
-              ),
 
-              child: const Text(
+                child: const Text(
 
-                "送信する",
+                  "送信する",
 
-                style: TextStyle(
+                  style: TextStyle(
 
-                  color: Colors.white,
+                    color: Colors.white,
 
-                  fontSize: 20,
+                    fontSize: 20,
 
-                  fontWeight:
-                      FontWeight.bold,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -935,60 +935,43 @@ class _ReviewPageState
               height: 14,
             ),
 
-            SizedBox(
+            Center(
+              child: SizedBox(
+                width: 240,
 
-              width:
-                  double.infinity,
+                child: ElevatedButton(
 
-              child:
-                  ElevatedButton(
+                  onPressed: () {
+                    openUrl(url);
+                  },
 
-                onPressed: () {
-                  openUrl(url);
-                },
+                  style: ElevatedButton.styleFrom(
 
-                style:
-                    ElevatedButton
-                        .styleFrom(
+                    backgroundColor: const Color(0xFFE91E63),
 
-                  backgroundColor:
-                      const Color(
-                    0xFFE91E63,
-                  ),
+                    foregroundColor: Colors.white,
 
-                  foregroundColor:
-                      Colors.white,
-
-                  padding:
-                      const EdgeInsets
-                          .symmetric(
-                    vertical: 14,
-                  ),
-
-                  shape:
-                      RoundedRectangleBorder(
-
-                    borderRadius:
-                        BorderRadius
-                            .circular(
-                      14,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 14,
                     ),
+
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+
+                    elevation: 3,
                   ),
 
-                  elevation: 3,
-                ),
+                  child: const Text(
 
-                child: const Text(
+                    "サイトを確認する！",
 
-                  "サイトを確認する！",
+                    style: TextStyle(
 
-                  style: TextStyle(
+                      fontSize: 16,
 
-                    fontSize: 16,
-
-                    fontWeight:
-                        FontWeight
-                            .bold,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -1034,7 +1017,7 @@ class _ReviewPageState
 
         title: const Text(
 
-          "競馬AI予想",
+          "Review",
 
           style: TextStyle(
 

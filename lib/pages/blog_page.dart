@@ -259,7 +259,7 @@ class _BlogPageState
           children: [
 
             // =========================
-            // 左
+            // 競馬ブログを読む！
             // =========================
             Expanded(
 
@@ -490,7 +490,7 @@ class _BlogPageState
 
         title: const Text(
 
-          "競馬AI予想",
+          "Blog",
 
           style: TextStyle(
 

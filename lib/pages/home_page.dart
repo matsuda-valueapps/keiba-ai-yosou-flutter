@@ -131,7 +131,7 @@ class _HomePageState
 
         title: const Text(
 
-          "競馬AI予想",
+          "Home",
 
           style: TextStyle(
 
@@ -262,6 +262,7 @@ class _HomePageState
 
                       icon:
                           Icons.gps_fixed,
+                      showIcon: false,    
                     );
                   }
 
@@ -335,7 +336,7 @@ class _HomePageState
                           .length;
 
                   // =========================
-                  // もっと見る
+                  // View more
                   // =========================
                   if (
                       provider.rankings.isNotEmpty &&
@@ -384,7 +385,7 @@ class _HomePageState
 
                         child: const Text(
 
-                          "View more",
+                          "View More",
 
                           style:
                               TextStyle(
@@ -434,6 +435,7 @@ class _HomePageState
                       icon:
                           Icons
                               .trending_up,
+                      showIcon: false,        
                     );
                   }
 
@@ -509,10 +511,10 @@ class _HomePageState
                           .length;
 
                   // =========================
-                  // もっと見る
+                  // View more
                   // =========================
                   if (
-                      provider.trendRankings.isNotEmpty &&
+                      provider.rankings.isNotEmpty &&
                       index == currentIndex) {
 
                     return Center(
@@ -558,7 +560,7 @@ class _HomePageState
 
                         child: const Text(
 
-                          "View more",
+                          "View More",
 
                           style:
                               TextStyle(

@@ -501,7 +501,7 @@ class _PredictionPageState
 
         title: const Text(
 
-          "競馬AI予想",
+          "AI Prediction",
 
           style: TextStyle(
 
