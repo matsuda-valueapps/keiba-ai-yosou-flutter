@@ -193,6 +193,12 @@ class _BlogPageState
     Map<String, dynamic> b,
   ) {
 
+    final screenWidth =
+    MediaQuery.of(context).size.width;
+
+    final imageSize =
+    screenWidth > 400 ? 100.0 : 90.0;
+
     final title =
         (b["title"] ?? "")
             .toString();
@@ -233,8 +239,12 @@ class _BlogPageState
           vertical: 8,
         ),
 
-        padding:
-            const EdgeInsets.all(14),
+        padding: const EdgeInsets.fromLTRB(
+          18,
+          14,
+          18,
+          14,
+        ),
 
         decoration: BoxDecoration(
 
@@ -266,8 +276,7 @@ class _BlogPageState
               child: Column(
 
                 crossAxisAlignment:
-                    CrossAxisAlignment
-                        .start,
+                    CrossAxisAlignment.start,
 
                 children: [
 
@@ -311,13 +320,35 @@ class _BlogPageState
                     decoration:
                         BoxDecoration(
 
-                      color: Color(0xFFE91E63),
+                      gradient: const LinearGradient(
+
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+
+                        colors: [
+
+                        Color(0xFFFF2E79),
+
+                        Color(0xFFE91E63),
+
+                        ],
+                      ),
 
                       borderRadius:
                           BorderRadius
-                              .circular(
-                        12,
-                      ),
+                              .circular(14),
+                      boxShadow: [
+
+                        BoxShadow(
+
+                          color: Colors.black.withValues(alpha: 0.20),
+
+                          blurRadius: 8,
+
+                          offset: Offset(0, 3),
+
+                        ),
+                      ],       
                     ),
 
                     child: const Text(
@@ -357,9 +388,9 @@ class _BlogPageState
 
                   ? Container(
 
-                      width: 90,
+                      width: imageSize,
 
-                      height: 90,
+                      height: imageSize,
 
                       color:
                           Colors.grey,
@@ -369,9 +400,9 @@ class _BlogPageState
 
                       imageUrl: image,
 
-                      width: 90,
+                      width: imageSize,
 
-                      height: 90,
+                      height: imageSize,
 
                       fit: BoxFit.cover,
 
@@ -389,9 +420,9 @@ class _BlogPageState
 
                         return Container(
 
-                          width: 90,
+                          width: imageSize,
 
-                          height: 90,
+                          height: imageSize,
 
                           color:
                               Colors.grey
@@ -423,9 +454,9 @@ class _BlogPageState
 
                         return Container(
 
-                          width: 90,
+                          width: imageSize,
 
-                          height: 90,
+                          height: imageSize,
 
                           color:
                               Colors.grey,

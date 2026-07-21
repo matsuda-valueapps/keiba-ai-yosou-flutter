@@ -454,7 +454,7 @@ class _RankingPageState
 
                                         borderRadius:
                                             BorderRadius.circular(
-                                          16,
+                                          20,
                                         ),
                                       ),
 

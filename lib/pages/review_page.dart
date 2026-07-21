@@ -625,87 +625,130 @@ class _ReviewPageState
 
               height: 56,
 
-              child: ElevatedButton(
+              child: DecoratedBox(
 
-                onPressed: () {
+                decoration: BoxDecoration(
 
-                  showDialog(
+                  gradient: const LinearGradient(
 
-                    context: context,
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
 
-                    builder: (_) {
+                    colors: [
 
-                      return AlertDialog(
+                    Color(0xFFFF2E79),
 
-                        title: const Text(
-                          "クチコミ送信完了",
-                        ),
+                    Color(0xFFE91E63),
 
-                        content: const Text(
-                          "投稿ありがとうございました！",
-                        ),
-
-                        actions: [
-
-                          TextButton(
-
-                            onPressed: () {
-
-                              Navigator.pop(context);
-                            },
-
-                            child: const Text(
-                              "OK",
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-
-                  siteController.clear();
-
-                  userController.clear();
-
-                  commentController.clear();
-
-                  setState(() {
-
-                    selectedRating = 5;
-                  });
-                },
-
-                style: ElevatedButton.styleFrom(
-
-                  backgroundColor: const Color(
-                    0xFFE91E63,
+                    ],
                   ),
 
-                  shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(14),
 
-                    borderRadius: BorderRadius.circular(
-                      14,
+                  boxShadow: const [
+
+                    BoxShadow(
+
+                      color: Colors.black26,
+
+                      blurRadius: 8,
+
+                      offset: Offset(0, 3),
+
+                    ),
+
+                  ],
+                ),
+
+                child: ElevatedButton(
+
+                  onPressed: () {
+
+                    showDialog(
+
+                      context: context,
+
+                      builder: (_) {
+
+                        return AlertDialog(
+
+                          title: const Text(
+                            "クチコミ送信完了",
+                          ),
+
+                          content: const Text(
+                            "投稿ありがとうございました！",
+                          ),
+
+                          actions: [
+
+                            TextButton(
+
+                              onPressed: () {
+
+                                Navigator.pop(context);
+
+                              },
+
+                              child: const Text(
+                                "OK",
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
+                    siteController.clear();
+
+                    userController.clear();
+
+                    commentController.clear();
+
+                    setState(() {
+
+                      selectedRating = 5;
+
+                    });
+                  },
+
+                  style: ElevatedButton.styleFrom(
+
+                    backgroundColor:
+                      Colors.transparent,
+
+                    shadowColor:
+                      Colors.transparent,
+
+                    foregroundColor:
+                      Colors.white,
+
+                    elevation: 0,
+
+                    padding:
+                        const EdgeInsets.symmetric(
+                      vertical: 14,
+                    ),
+
+                    shape: RoundedRectangleBorder(
+
+                      borderRadius:
+                          BorderRadius.circular(14),
                     ),
                   ),
 
-                  elevation: 3,
+                  child: const Text(
 
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 14,
-                  ),
-                ),
+                    "送信する",
 
-                child: const Text(
+                    style: TextStyle(
 
-                  "送信する",
+                      fontSize: 20,
 
-                  style: TextStyle(
-
-                    color: Colors.white,
-
-                    fontSize: 20,
-
-                    fontWeight: FontWeight.bold,
+                      fontWeight:
+                          FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -939,7 +982,42 @@ class _ReviewPageState
               child: SizedBox(
                 width: 240,
 
-                child: ElevatedButton(
+                child: DecoratedBox(
+
+                  decoration: BoxDecoration(
+
+                    gradient: const LinearGradient(
+
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+
+                      colors: [
+
+                      Color(0xFFFF2E79),
+
+                      Color(0xFFE91E63),
+
+                      ],
+                    ),
+
+                    borderRadius: BorderRadius.circular(14),
+
+                    boxShadow: const [
+
+                      BoxShadow(
+
+                        color: Colors.black26,
+
+                        blurRadius: 8,
+
+                        offset: Offset(0, 3),
+
+                      ),
+
+                    ],
+                  ),
+
+                  child: ElevatedButton(
 
                   onPressed: () {
                     openUrl(url);
@@ -947,7 +1025,9 @@ class _ReviewPageState
 
                   style: ElevatedButton.styleFrom(
 
-                    backgroundColor: const Color(0xFFE91E63),
+                    backgroundColor: Colors.transparent,
+
+                    shadowColor: Colors.transparent,
 
                     foregroundColor: Colors.white,
 
@@ -959,7 +1039,7 @@ class _ReviewPageState
                       borderRadius: BorderRadius.circular(14),
                     ),
 
-                    elevation: 3,
+                    elevation: 0,
                   ),
 
                   child: const Text(
@@ -972,6 +1052,7 @@ class _ReviewPageState
 
                       fontWeight: FontWeight.bold,
                     ),
+                  ),
                   ),
                 ),
               ),

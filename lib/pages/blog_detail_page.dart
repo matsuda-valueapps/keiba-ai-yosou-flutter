@@ -28,6 +28,11 @@ import '../providers/banner_provider.dart';
 import '../widgets/bottom_banner.dart';
 
 // =========================
+// 🔥 共通BottomNavigation
+// =========================
+import '../widgets/main_bottom_navigation.dart';
+
+// =========================
 // 🔥 pages
 // BottomNavigation遷移用
 // =========================
@@ -267,127 +272,6 @@ class _BlogDetailPageState
   // =========================
   // 🔥 共通BottomNavigation
   // =========================
-  Widget buildBottomNavigation() {
-
-    return BottomNavigationBar(
-
-      currentIndex:
-          _currentIndex,
-
-      onTap:
-          onTabTapped,
-
-      type:
-          BottomNavigationBarType
-              .fixed,
-
-      backgroundColor:
-          Colors.black,
-
-      selectedItemColor:
-          Colors.white,
-
-      unselectedItemColor:
-          Colors.grey,
-
-      selectedLabelStyle:
-          const TextStyle(
-
-        fontWeight:
-            FontWeight.bold,
-      ),
-
-      iconSize: 30,
-
-      items: const [
-
-        BottomNavigationBarItem(
-
-          icon: Icon(
-            Icons.home,
-            color:
-                Color(0xFF6EF3D6),
-          ),
-
-          activeIcon: Icon(
-            Icons.home,
-            color:
-                Color(0xFF00F5D4),
-          ),
-
-          label: "Home",
-        ),
-
-        BottomNavigationBarItem(
-
-          icon: Icon(
-            Icons.emoji_events,
-            color:
-                Color(0xFFFFC107),
-          ),
-
-          activeIcon: Icon(
-            Icons.emoji_events,
-            color:
-                Color(0xFFFFD54F),
-          ),
-
-          label: "ランキング",
-        ),
-
-        BottomNavigationBarItem(
-
-          icon: Icon(
-            Icons.chat_bubble,
-            color:
-                Color(0xFFFF4081),
-          ),
-
-          activeIcon: Icon(
-            Icons.chat_bubble,
-            color:
-                Color(0xFFFF5C93),
-          ),
-
-          label: "クチコミ",
-        ),
-
-        BottomNavigationBarItem(
-
-          icon: Icon(
-            Icons.article,
-            color:
-                Color(0xFFFFB74D),
-          ),
-
-          activeIcon: Icon(
-            Icons.article,
-            color:
-                Color(0xFFFFCC80),
-          ),
-
-          label: "ブログ",
-        ),
-
-        BottomNavigationBarItem(
-
-          icon: Icon(
-            Icons.show_chart,
-            color:
-                Color(0xFF64B5F6),
-          ),
-
-          activeIcon: Icon(
-            Icons.show_chart,
-            color:
-                Color(0xFF90CAF9),
-          ),
-
-          label: "予想",
-        ),
-      ],
-    );
-  }
 
   @override
   Widget build(
@@ -407,13 +291,13 @@ class _BlogDetailPageState
         appBar: AppBar(
 
           backgroundColor:
-              Color(0xFFE91E63),
+              Color(0xFF0D47A1),
 
           centerTitle: true,
 
           title: const Text(
 
-            "ブログ詳細",
+            "Blog Detail",
 
             style: TextStyle(
               color: Colors.white,
@@ -429,14 +313,20 @@ class _BlogDetailPageState
         bottomNavigationBar:
             Column(
 
-          mainAxisSize:
-              MainAxisSize.min,
+          mainAxisSize: MainAxisSize.min,
 
           children: [
 
             const BottomBanner(),
 
-            buildBottomNavigation(),
+            MainBottomNavigation(
+
+              currentIndex: _currentIndex,
+
+              onTap: onTabTapped,
+
+            ),
+
           ],
         ),
       );
@@ -476,7 +366,7 @@ class _BlogDetailPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFFE91E63),
+            Color(0xFF0D47A1),
 
         centerTitle: true,
 
@@ -494,7 +384,7 @@ class _BlogDetailPageState
 
         title: const Text(
 
-          "ブログ詳細",
+          "Blog Detail",
 
           style: TextStyle(
 
@@ -882,7 +772,13 @@ class _BlogDetailPageState
       ),
 
       bottomNavigationBar:
-          buildBottomNavigation(),
+          MainBottomNavigation(
+
+            currentIndex: _currentIndex,
+
+            onTap: onTabTapped,
+
+          ),
     );
   }
 }

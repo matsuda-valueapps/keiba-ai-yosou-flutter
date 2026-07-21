@@ -176,7 +176,7 @@ class TrendRankingCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(
         8,
         14,
-        14,
+        10,
         14,
       ),
 
@@ -225,31 +225,10 @@ class TrendRankingCard extends StatelessWidget {
               // =========================
               ranking.rank <= 3
 
-                  ? Container(
+                  ? SizedBox(
 
                       width: 110,
                       height: 110,
-
-                      decoration: BoxDecoration(
-
-                        shape: BoxShape.circle,
-
-                        boxShadow: [
-
-                          BoxShadow(
-
-                            color: Colors.black.withValues(alpha: 0.08),
-
-                            blurRadius: 6,
-
-                            spreadRadius: 0,
-
-                            offset: const Offset(0, 2),
-
-                          ),
-
-                        ],
-                      ),
 
                       child: ClipOval(
 
@@ -270,58 +249,67 @@ class TrendRankingCard extends StatelessWidget {
                       ),
                     )
 
-                  : Container(
+                  : SizedBox(
 
-                      width: 80,
-                      height: 80,
+                      width: 110,
+                      height: 110,
 
-                      decoration: BoxDecoration(
+                      child: Center(
 
-                        shape: BoxShape.circle,
+                        child: Container(
 
-                        gradient: const LinearGradient(
+                          width: 80,
+                          height: 80,
 
-                          colors: [
+                          decoration: BoxDecoration(
 
-                          Color(0xFF42A5F5),
+                            shape: BoxShape.circle,
 
-                          Color(0xFF1976D2),
+                            gradient: const LinearGradient(
 
-                          ],
-                        ),
+                              colors: [
 
-                        boxShadow: [
+                              Color(0xFF42A5F5),
 
-                          BoxShadow(
+                              Color(0xFF1976D2),
 
-                            color: Colors.black.withValues(alpha: 0.08),
+                              ],
+                            ),
 
-                            blurRadius: 4,
+                            boxShadow: [
 
-                            offset: const Offset(0, 1),
+                              BoxShadow(
 
+                                color: Colors.black.withValues(alpha: 0.08),
+
+                                blurRadius: 4,
+
+                                offset: const Offset(0, 1),
+
+                              ),
+
+                            ],
                           ),
 
-                        ],
-                      ),
+                          alignment: Alignment.center,
 
-                      alignment: Alignment.center,
+                          child: Text(
 
-                      child: Text(
+                            ranking.rank.toString(),
 
-                        ranking.rank.toString(),
+                            style: const TextStyle(
 
-                        style: const TextStyle(
+                              color: Colors.white,
 
-                          color: Colors.white,
+                              fontSize: 34,
 
-                          fontSize: 34,
+                              fontWeight: FontWeight.bold,
 
-                          fontWeight: FontWeight.bold,
-
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                  ),
 
               const SizedBox(
                 width: 6,
@@ -332,13 +320,16 @@ class TrendRankingCard extends StatelessWidget {
               // =========================
               Expanded(
 
-                child: Column(
+                child: Padding(
 
-                  crossAxisAlignment:
-                      CrossAxisAlignment
-                          .start,
+                  padding: const EdgeInsets.only(left: 12),
 
-                  children: [
+                  child: Column(
+
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start,
+
+                    children: [
 
                     // =========================
                     // 上段
@@ -409,7 +400,7 @@ class TrendRankingCard extends StatelessWidget {
                         ),
 
                         const SizedBox(
-                          width: 10,
+                          width: 4,
                         ),
 
                         // =========================
@@ -487,9 +478,9 @@ class TrendRankingCard extends StatelessWidget {
                                     imageUrl:
                                         imageUrl,
 
-                                    width: 64,
+                                    width: 72,
 
-                                    height: 64,
+                                    height: 72,
 
                                     fit: BoxFit.cover,
 
@@ -501,9 +492,9 @@ class TrendRankingCard extends StatelessWidget {
 
                                       return Container(
 
-                                        width: 64,
+                                        width: 72,
 
-                                        height: 64,
+                                        height: 72,
 
                                         alignment:
                                             Alignment.center,
@@ -528,9 +519,9 @@ class TrendRankingCard extends StatelessWidget {
 
                                       return Container(
 
-                                        width: 64,
+                                        width: 72,
 
-                                        height: 64,
+                                        height: 72,
 
                                         decoration:
                                             BoxDecoration(
@@ -581,7 +572,8 @@ class TrendRankingCard extends StatelessWidget {
                             FontWeight.bold,
                       ),
                     ),
-                  ],
+                    ],
+                  ),
                 ),
               )
             ],
@@ -604,35 +596,84 @@ class TrendRankingCard extends StatelessWidget {
               SizedBox(
                 width: 180,
 
-                child: ElevatedButton(
+                child: DecoratedBox(
 
-                  style: ElevatedButton.styleFrom(
+                  decoration: BoxDecoration(
 
-                    backgroundColor: const Color(0xFFE91E63),
+                    gradient: const LinearGradient(
 
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 14,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+
+                      colors: [
+
+                      Color(0xFFFF2E79),
+
+                      Color(0xFFE91E63),
+
+                      ],
                     ),
 
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
+                    borderRadius: BorderRadius.circular(14),
 
-                    elevation: 3,
+                    boxShadow: const [
+
+                      BoxShadow(
+
+                        color: Colors.black26,
+
+                        blurRadius: 8,
+
+                        offset: Offset(0, 3),
+
+                      ),
+
+                    ],
+
                   ),
 
-                  onPressed: () {
-                    openBlogDetail(context);
-                  },
+                  child: ElevatedButton(
 
-                  child: const Text(
-                    "競馬ブログを読む！",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                    style: ElevatedButton.styleFrom(
+
+                      backgroundColor: Colors.transparent,
+
+                      shadowColor: Colors.transparent,
+
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 14,
+                      ),
+
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+
                     ),
+
+                    onPressed: () {
+
+                      openBlogDetail(context);
+
+                    },
+
+                    child: const Text(
+
+                      "競馬ブログを読む！",
+
+                      style: TextStyle(
+
+                        color: Colors.white,
+
+                        fontWeight: FontWeight.bold,
+
+                      ),
+
+                    ),
+
                   ),
+
                 ),
+
               ),
 
               const SizedBox(width: 6),

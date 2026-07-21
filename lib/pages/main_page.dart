@@ -18,6 +18,10 @@ import '../providers/banner_provider.dart';
 // =========================
 import '../providers/scroll_top_provider.dart';
 
+// =========================
+// 🔥 共通BottomNavigation
+// =========================
+import '../widgets/main_bottom_navigation.dart';
 import 'home_page.dart';
 import 'ranking_page.dart';
 import 'review_page.dart';
@@ -186,10 +190,9 @@ class _MainPageState
       // 🔥 BottomNavigation
       // =========================
       bottomNavigationBar:
-          BottomNavigationBar(
+          MainBottomNavigation(
 
-        currentIndex:
-            provider.index,
+        currentIndex: provider.index,
 
         onTap: (i) {
 
@@ -212,27 +215,18 @@ class _MainPageState
           // =========================
           if (currentIndex == i) {
 
-            // =========================
-            // 🔥 同じタブでも
-            // TOPへ戻す
-            // =========================
             context
                 .read<ScrollTopProvider>()
                 .scrollToTop(i);
 
-            // =========================
-            // 🔥 予想タブリセット
-            // =========================
             if (i == 4) {
 
               context
-                  .read<
-                      PredictionProvider>()
+                  .read<PredictionProvider>()
                   .reset();
 
               context
-                  .read<
-                      PredictionProvider>()
+                  .read<PredictionProvider>()
                   .loadToday();
             }
 
@@ -240,21 +234,17 @@ class _MainPageState
           }
 
           // =========================
-          // 🔥 バナー変更（超重要）
-          //
-          // ページ遷移時に
-          // 必ず別バナーへ変更
+          // 🔥 バナー変更
           // =========================
           context
               .read<BannerProvider>()
               .pickRandomBanner();
 
           // =========================
-          // 🔥 通常タブ切替
+          // 🔥 タブ切替
           // =========================
           context
-              .read<
-                  MainPageProvider>()
+              .read<MainPageProvider>()
               .changeIndex(i);
 
           // =========================
@@ -265,152 +255,18 @@ class _MainPageState
               .scrollToTop(i);
 
           // =========================
-          // 🔥 予想ページロード
+          // 🔥 AI予想ロード
           // =========================
           if (i == 4) {
 
             final predictionProvider =
-                context.read<
-                    PredictionProvider>();
+                context.read<PredictionProvider>();
 
-            // 🔥 選択状態リセット
             predictionProvider.reset();
 
-            // 🔥 今日の予想再取得
             predictionProvider.loadToday();
           }
         },
-
-        type:
-            BottomNavigationBarType
-                .fixed,
-
-        backgroundColor:
-            Color(0xFF0D47A1),
-
-        // =========================
-        // 🔥 ラベル白
-        // =========================
-        selectedItemColor:
-            Colors.white,
-
-        unselectedItemColor:
-            Colors.grey,
-
-        selectedLabelStyle:
-            const TextStyle(
-
-          fontWeight:
-              FontWeight.bold,
-        ),
-
-        // =========================
-        // 🔥 アイコンサイズ
-        // =========================
-        iconSize: 30,
-
-        items: const [
-
-          // =========================
-          // 🔥 HOME
-          // =========================
-          BottomNavigationBarItem(
-
-            icon: Icon(
-              Icons.home,
-              color:
-                  Colors.grey,
-            ),
-
-            activeIcon: Icon(
-              Icons.home,
-              color:
-                  Colors.white,
-            ),
-
-            label: "ホーム",
-          ),
-
-          // =========================
-          // 🔥 Ranking
-          // =========================
-          BottomNavigationBarItem(
-
-            icon: Icon(
-              Icons.emoji_events,
-              color:
-                  Colors.grey,
-            ),
-
-            activeIcon: Icon(
-              Icons.emoji_events,
-              color:
-                  Colors.white,
-            ),
-
-            label: "ランキング",
-          ),
-
-          // =========================
-          // 🔥 Review
-          // =========================
-          BottomNavigationBarItem(
-
-            icon: Icon(
-              Icons.chat_bubble,
-              color:
-                  Colors.grey,
-            ),
-
-            activeIcon: Icon(
-              Icons.chat_bubble,
-              color:
-                  Colors.white,
-            ),
-
-            label: "クチコミ",
-          ),
-
-          // =========================
-          // 🔥 Blog
-          // =========================
-          BottomNavigationBarItem(
-
-            icon: Icon(
-              Icons.article,
-              color:
-                  Colors.grey,
-            ),
-
-            activeIcon: Icon(
-              Icons.article,
-              color:
-                  Colors.white,
-            ),
-
-            label: "ブログ",
-          ),
-
-          // =========================
-          // 🔥 Prediction
-          // =========================
-          BottomNavigationBarItem(
-
-            icon: Icon(
-              Icons.show_chart,
-              color:
-                  Colors.grey,
-            ),
-
-            activeIcon: Icon(
-              Icons.show_chart,
-              color:
-                  Colors.white,
-            ),
-
-            label: "AI予想",
-          ),
-        ],
       ),
     );
   }
