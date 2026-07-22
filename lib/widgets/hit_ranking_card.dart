@@ -689,7 +689,7 @@ class HitRankingCard extends StatelessWidget {
 
                     child: const Text(
 
-                      "競馬ブログを読む！",
+                      "競馬ブログを読む",
 
                       style: TextStyle(
 
@@ -710,7 +710,7 @@ class HitRankingCard extends StatelessWidget {
               const SizedBox(width: 6),
 
               // =========================
-              // 🏠
+              //  🔗 外部サイト
               // =========================
               InkWell(
 
@@ -755,7 +755,9 @@ class HitRankingCard extends StatelessWidget {
 
                   child: const Icon(
 
-                    Icons.home,
+                    Icons.open_in_new,
+
+                    size: 24,
 
                     color: Colors.white,
                   ),

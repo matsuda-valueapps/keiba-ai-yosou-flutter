@@ -467,7 +467,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "サイト名を入力して下さい",
+                  "サイト名を入力",
 
               border:
                   OutlineInputBorder(
@@ -512,7 +512,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "投稿者名を入力して下さい",
+                  "投稿者名を入力",
 
               border:
                   OutlineInputBorder(
@@ -585,7 +585,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "クチコミを入力して下さい",
+                  "クチコミを入力",
 
               border:
                   OutlineInputBorder(
@@ -1044,7 +1044,7 @@ class _ReviewPageState
 
                   child: const Text(
 
-                    "サイトを確認する！",
+                    "サイトを確認する",
 
                     style: TextStyle(
 

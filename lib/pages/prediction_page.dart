@@ -180,7 +180,7 @@ class _PredictionPageState
         return AlertDialog(
 
           title: const Text(
-            "競馬場を以下から選択して下さい！",
+            "競馬場を選択",
           ),
 
           content: SizedBox(
@@ -645,10 +645,9 @@ class _PredictionPageState
                                 horizontal: 16,
                               ),
 
-                              padding:
-                                  const EdgeInsets
-                                      .all(
-                                14,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 18,
+                                vertical: 14,
                               ),
 
                               decoration:
@@ -668,21 +667,40 @@ class _PredictionPageState
                                 ),
                               ),
 
-                              child: Text(
+                              child: Row(
 
-                                provider
-                                        .selectedPlace
-                                        .isEmpty
-                                    ? "競馬場を選択して下さい！"
-                                    : provider
-                                        .selectedPlace,
+                                children: [
 
-                                style:
-                                    const TextStyle(
+                                  Expanded(
 
-                                  fontWeight:
-                                      FontWeight.bold,
-                                ),
+                                    child: Text(
+
+                                      provider.selectedPlace.isEmpty
+                                          ? "競馬場を選択"
+                                          : provider.selectedPlace,
+
+                                      style: const TextStyle(
+
+                                        fontSize: 18,
+
+                                        fontWeight: FontWeight.bold,
+
+                                        color: Colors.black87,
+                                      ),
+
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+
+                                  const Icon(
+
+                                    Icons.expand_more,
+
+                                    size: 36,
+
+                                    color: Color(0xFF0D47A1),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -691,10 +709,9 @@ class _PredictionPageState
                             height: 8,
                           ),
 
-                          const Padding(
+                          Padding(
 
-                            padding:
-                                EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: 16,
                             ),
 
@@ -704,10 +721,9 @@ class _PredictionPageState
 
                               style: TextStyle(
 
-                                fontWeight:
-                                    FontWeight.bold,
+                                fontSize: 14,
 
-                                color: Colors.black54    
+                                color: Colors.grey.shade600,
                               ),
                             ),
                           ),
@@ -734,7 +750,7 @@ class _PredictionPageState
                           ),
 
                           const RankingHeader(
-                            title: "▼ 競馬サイトの予想を入手 ▼",
+                            title: "〜おすすめ競馬サイト〜",
                               icon: Icons.star,
                               showRankingText: false,
                               showIcon: false,

@@ -658,7 +658,7 @@ class TrendRankingCard extends StatelessWidget {
 
                     child: const Text(
 
-                      "競馬ブログを読む！",
+                      "競馬ブログを読む",
 
                       style: TextStyle(
 
@@ -679,7 +679,7 @@ class TrendRankingCard extends StatelessWidget {
               const SizedBox(width: 6),
 
               // =========================
-              // 🏠
+              // 🔗 外部サイト
               // =========================
               InkWell(
 
@@ -724,7 +724,9 @@ class TrendRankingCard extends StatelessWidget {
 
                   child: const Icon(
 
-                    Icons.home,
+                    Icons.open_in_new,
+
+                    size: 24,
 
                     color: Colors.white,
                   ),

@@ -353,7 +353,7 @@ class _BlogPageState
 
                     child: const Text(
 
-                      "競馬ブログを読む！",
+                      "競馬ブログを読む",
 
                       style: TextStyle(
 

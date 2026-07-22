@@ -25,7 +25,7 @@ class RankingHeader extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
         gradient: const LinearGradient(
           colors: [
             Color(0xFF0D47A1),
