@@ -584,7 +584,7 @@ class _HomePageState
                     return const RankingHeader(
 
                       title:
-                          "〜おすすめ競馬サイト〜",
+                          "厳選！おすすめ競馬サイト",
 
                       icon: Icons.star,
 

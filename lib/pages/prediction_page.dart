@@ -750,7 +750,7 @@ class _PredictionPageState
                           ),
 
                           const RankingHeader(
-                            title: "〜おすすめ競馬サイト〜",
+                            title: "厳選！おすすめ競馬サイト",
                               icon: Icons.star,
                               showRankingText: false,
                               showIcon: false,

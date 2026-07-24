@@ -162,8 +162,8 @@ class _ReviewPageState
 
     return Container(
 
-      width: 58,
-      height: 58,
+      width: 62,
+      height: 62,
 
       decoration: BoxDecoration(
 
@@ -442,16 +442,40 @@ class _ReviewPageState
           // =========================
           // サイト名
           // =========================
-          const Text(
+          Text.rich(
 
-            "サイト名",
+            TextSpan(
 
-            style: TextStyle(
+              children: [
 
-              fontWeight:
-                  FontWeight.bold,
+                const TextSpan(
 
-              fontSize: 16,
+                  text: "サイト名",
+
+                  style: TextStyle(
+
+                    color: Colors.black,
+
+                    fontWeight: FontWeight.bold,
+
+                    fontSize: 16,
+                  ),
+                ),
+
+                TextSpan(
+
+                  text: " *",
+
+                  style: TextStyle(
+
+                    color: Colors.red.shade500,
+
+                    fontWeight: FontWeight.bold,
+
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
           ),
 
@@ -467,7 +491,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "サイト名を入力",
+                  "例：競馬○◯",
 
               border:
                   OutlineInputBorder(
@@ -512,7 +536,7 @@ class _ReviewPageState
             decoration: InputDecoration(
 
               hintText:
-                  "投稿者名を入力",
+                  "例：Keibaサポーター",
 
               border:
                   OutlineInputBorder(
@@ -532,16 +556,40 @@ class _ReviewPageState
           // =========================
           // 星評価
           // =========================
-          const Text(
+          Text.rich(
 
-            "★5段階評価",
+            TextSpan(
 
-            style: TextStyle(
+              children: [
 
-              fontWeight:
-                  FontWeight.bold,
+                const TextSpan(
 
-              fontSize: 16,
+                  text: "★5段階評価 (タップして評価)",
+
+                  style: TextStyle(
+
+                    color: Colors.black,
+
+                    fontWeight: FontWeight.bold,
+
+                    fontSize: 16,
+                  ),
+                ),
+
+                TextSpan(
+
+                  text: " *",
+
+                  style: TextStyle(
+
+                    color: Colors.red.shade500,
+
+                    fontWeight: FontWeight.bold,
+
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
           ),
 
@@ -558,16 +606,40 @@ class _ReviewPageState
           // =========================
           // コメント
           // =========================
-          const Text(
+          Text.rich(
 
-            "クチコミ内容",
+            TextSpan(
 
-            style: TextStyle(
+              children: [
 
-              fontWeight:
-                  FontWeight.bold,
+                const TextSpan(
 
-              fontSize: 16,
+                  text: "クチコミ内容",
+
+                  style: TextStyle(
+
+                    color: Colors.black,
+
+                    fontWeight: FontWeight.bold,
+
+                    fontSize: 16,
+                  ),
+                ),
+
+                TextSpan(
+
+                  text: " *",
+
+                  style: TextStyle(
+
+                    color: Colors.red.shade500,
+
+                    fontWeight: FontWeight.bold,
+
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
           ),
 
@@ -577,23 +649,19 @@ class _ReviewPageState
 
           TextField(
 
-            controller:
-                commentController,
+            controller: commentController,
 
-            maxLines: 5,
+            maxLines: 4,
 
             decoration: InputDecoration(
 
-              hintText:
-                  "クチコミを入力",
+              hintText: "サイトを利用した感想を入力して下さい。",
 
-              border:
-                  OutlineInputBorder(
+              contentPadding: const EdgeInsets.all(14),
 
-                borderRadius:
-                    BorderRadius.circular(
-                  12,
-                ),
+              border: OutlineInputBorder(
+
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
           ),
@@ -602,15 +670,26 @@ class _ReviewPageState
             height: 18,
           ),
 
-          const Text(
+          Text(
+            "* は必須項目です",
+            style: TextStyle(
+              color: Colors.red.shade500,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
 
-            "※クチコミ内容は、当アプリで審査後に反映されます。時間が掛かる場合がございますので、予めご了承下さいませ。",
+          const SizedBox(height: 6),
+
+          Text(
+
+            "※クチコミ内容は、当アプリで審査後に反映されます。反映まで時間が掛かる場合がございますので、予めご了承下さい。",
 
             style: TextStyle(
 
-              color: Colors.black,
+              color: Colors.grey.shade700,
 
-              fontSize: 13,
+              fontSize: 14,
             ),
           ),
 
@@ -845,13 +924,16 @@ class _ReviewPageState
 
                 Expanded(
 
-                  child: Column(
+                  child: Padding(
 
-                    crossAxisAlignment:
-                        CrossAxisAlignment
-                            .start,
+                    padding: const EdgeInsets.only(left: 10),
 
-                    children: [
+                    child: Column(
+
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start,
+
+                      children: [
 
                       Text(
 
@@ -884,51 +966,61 @@ class _ReviewPageState
                         height: 6,
                       ),
 
-                      Wrap(
-
-                        crossAxisAlignment:
-                            WrapCrossAlignment
-                                .center,
-
-                        spacing: 6,
+                      Row(
 
                         children: [
 
-                          ...List.generate(
+                          Row(
 
-                            rating,
+                            children: List.generate(
 
-                            (_) =>
-                                const Icon(
+                              rating,
 
-                              Icons.star,
+                              (_) => const Padding(
 
-                              color:
-                                  Colors
-                                      .amber,
+                                padding: EdgeInsets.only(right: 2),
 
-                              size: 18,
+                                child: Icon(
+
+                                  Icons.star,
+
+                                  color: Colors.amber,
+
+                                  size: 18,
+
+                                ),
+                              ),
                             ),
                           ),
 
-                          Text(
+                          const SizedBox(width: 12),
 
-                            userName
-                                    .isNotEmpty
-                                ? userName
-                                : "匿名",
+                          Expanded(
 
-                            style:
-                                const TextStyle(
+                            child: Align(
 
-                              fontWeight:
-                                  FontWeight
-                                      .bold,
+                              alignment: Alignment.centerRight,
+
+                              child: Text(
+
+                                userName.isNotEmpty
+                                    ? userName
+                                    : "匿名",
+
+                                style: TextStyle(
+
+                                  fontWeight: FontWeight.bold,
+
+                                  color: Colors.grey.shade700,
+
+                                ),
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],

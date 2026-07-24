@@ -107,7 +107,7 @@ class _RankingPageState
           siteId: 0,
 
           siteName:
-              "ダミー競馬サイト$i",
+              "競馬サイト$i",
 
           // =========================
           // 🔥 追加
