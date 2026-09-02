@@ -4,8 +4,10 @@ class RankingHeader extends StatelessWidget {
   final String title;
   final IconData icon;
 
-  /// ⭐追加
+  /// ランキング文字を表示するか
   final bool showRankingText;
+
+  /// アイコンを表示するか
   final bool showIcon;
 
   const RankingHeader({
@@ -18,14 +20,25 @@ class RankingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.90,
-        child: Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+    return Container(
+      // =========================
+      // ランキングカードと左右幅を統一
+      // HitRankingCard / TrendRankingCard
+      // と同じ horizontal: 16
+      // =========================
+      margin: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 6,
+      ),
+
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 10,
+      ),
+
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
+
         gradient: const LinearGradient(
           colors: [
             Color(0xFF0D47A1),
@@ -33,10 +46,13 @@ class RankingHeader extends StatelessWidget {
           ],
         ),
       ),
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
+          // =========================
+          // タイトル
+          // =========================
           Text(
             title,
             style: const TextStyle(
@@ -46,20 +62,25 @@ class RankingHeader extends StatelessWidget {
             ),
           ),
 
-          if (showRankingText) ...[
-            const SizedBox(width: 6),
+          // =========================
+          // 「ランキング」
+          // =========================
+          if (showRankingText)
             const Text(
-              "Ranking",
+              "ランキング",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ],
 
+          // =========================
+          // アイコン
+          // =========================
           if (showIcon) ...[
             const SizedBox(width: 8),
+
             Icon(
               icon,
               color: Colors.white,
@@ -68,8 +89,6 @@ class RankingHeader extends StatelessWidget {
           ],
         ],
       ),
-      ),
-    ),
-  );
-}
+    );
+  }
 }

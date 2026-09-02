@@ -131,7 +131,7 @@ class _HomePageState
 
         title: const Text(
 
-          "Home",
+          "ホーム",
 
           style: TextStyle(
 
@@ -352,7 +352,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Color(0xFF0D47A1),
+                              Color(0xFF1976D2),
 
                           padding:
                               const EdgeInsets
@@ -385,7 +385,7 @@ class _HomePageState
 
                         child: const Text(
 
-                          "View More",
+                          "もっと見る",
 
                           style:
                               TextStyle(
@@ -527,7 +527,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Color(0xFF0D47A1),
+                              Color(0xFF1976D2),
 
                           padding:
                               const EdgeInsets
@@ -560,7 +560,7 @@ class _HomePageState
 
                         child: const Text(
 
-                          "View More",
+                          "もっと見る",
 
                           style:
                               TextStyle(

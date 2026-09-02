@@ -638,9 +638,9 @@ class HitRankingCard extends StatelessWidget {
 
                       colors: [
 
-                      Color(0xFFFF2E79),
+                      Color(0xFF0288D1),
 
-                      Color(0xFFE91E63),
+                      Color(0xFF03A9F4),
 
                       ],
                     ),
@@ -689,7 +689,7 @@ class HitRankingCard extends StatelessWidget {
 
                     child: const Text(
 
-                      "競馬ブログを読む",
+                      "詳細はコチラ",
 
                       style: TextStyle(
 
@@ -730,7 +730,7 @@ class HitRankingCard extends StatelessWidget {
                   decoration:
                       BoxDecoration(
 
-                    color: Colors.orange,
+                    color: Colors.blue,
 
                     borderRadius:
                         BorderRadius.circular(

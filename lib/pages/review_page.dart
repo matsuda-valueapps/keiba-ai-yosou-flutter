@@ -715,9 +715,9 @@ class _ReviewPageState
 
                     colors: [
 
-                    Color(0xFFFF2E79),
+                    Color(0xFF0288D1),
 
-                    Color(0xFFE91E63),
+                    Color(0xFF03A9F4),
 
                     ],
                   ),
@@ -1085,9 +1085,9 @@ class _ReviewPageState
 
                       colors: [
 
-                      Color(0xFFFF2E79),
+                      Color(0xFF0288D1),
 
-                      Color(0xFFE91E63),
+                      Color(0xFF03A9F4),
 
                       ],
                     ),
@@ -1190,7 +1190,7 @@ class _ReviewPageState
 
         title: const Text(
 
-          "Review",
+          "クチコミ",
 
           style: TextStyle(
 

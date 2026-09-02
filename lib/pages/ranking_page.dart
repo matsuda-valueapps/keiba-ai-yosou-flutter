@@ -247,8 +247,8 @@ class _RankingPageState
         title: Text(
 
           provider.tabIndex == 0
-              ? "Ranking"
-              : "Ranking",
+              ? "高額的中ランキング"
+              : "的中数ランキング",
 
           style: const TextStyle(
 

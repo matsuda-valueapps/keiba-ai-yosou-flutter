@@ -384,7 +384,7 @@ class _BlogDetailPageState
 
         title: const Text(
 
-          "Blog Detail",
+          "競馬ブログ詳細",
 
           style: TextStyle(
 

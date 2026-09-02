@@ -327,9 +327,9 @@ class _BlogPageState
 
                         colors: [
 
-                        Color(0xFFFF2E79),
+                        Color(0xFF0288D1),
 
-                        Color(0xFFE91E63),
+                        Color(0xFF03A9F4),
 
                         ],
                       ),
@@ -521,7 +521,7 @@ class _BlogPageState
 
         title: const Text(
 
-          "Blog",
+          "競馬ブログ",
 
           style: TextStyle(
 
