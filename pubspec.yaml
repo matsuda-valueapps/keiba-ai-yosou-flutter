@@ -37,6 +37,7 @@ flutter:
 
   assets:
     - assets/images/home_header.png
+    - assets/images/home_header2.png
     - assets/images/ranking_header1.png
     - assets/images/ranking_header2.png
     - assets/images/review_header.png
@@ -46,6 +47,11 @@ flutter:
     - assets/images/medal_silver.png
     - assets/images/medal_bronze.png
     - assets/icon/icon.png
+    - assets/icon/home.png
+    - assets/icon/ranking.png
+    - assets/icon/review.png
+    - assets/icon/blog.png
+    - assets/icon/AI prediction.png
 
 flutter_launcher_icons:
 

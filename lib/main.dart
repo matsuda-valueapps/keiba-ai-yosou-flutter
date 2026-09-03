@@ -35,19 +35,13 @@ import 'pages/main_page.dart';
 Future<void> firebaseMessagingBackgroundHandler(
   RemoteMessage message,
 ) async {
-
   await Firebase.initializeApp(
-
-    options:
-        DefaultFirebaseOptions
-            .currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final Logger logger =
-      Logger('FCM_BACKGROUND');
+  final Logger logger = Logger('FCM_BACKGROUND');
 
   logger.info(
-
     "🔥 BACKGROUND MESSAGE: "
     "${message.messageId}",
   );
@@ -59,21 +53,16 @@ Future<void> firebaseMessagingBackgroundHandler(
 }
 
 Future<void> main() async {
-
   // =========================
   // 🔥 Flutter初期化
   // =========================
-  WidgetsFlutterBinding
-      .ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   // =========================
   // 🔥 Firebase初期化
   // =========================
   await Firebase.initializeApp(
-
-    options:
-        DefaultFirebaseOptions
-            .currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   // =========================
@@ -92,25 +81,18 @@ Future<void> main() async {
   // 🔥 Logging設定
   // ※FCMより先に設定
   // =========================
-  const bool isProduction =
-      bool.fromEnvironment(
+  const bool isProduction = bool.fromEnvironment(
     'dart.vm.product',
   );
 
   if (isProduction) {
-
     Logger.root.level = Level.OFF;
-
   } else {
-
     Logger.root.level = Level.ALL;
 
     Logger.root.onRecord.listen(
-
       (LogRecord record) {
-
         debugPrint(
-
           '[${record.level.name}] '
           '${record.time}: '
           '${record.message}',
@@ -129,63 +111,48 @@ Future<void> main() async {
   // 🔥 App起動
   // =========================
   runApp(
-
     MultiProvider(
-
       providers: [
-
         // =========================
         // 🔥 Home
         // =========================
         ChangeNotifierProvider(
-
-          create: (_) =>
-              HomeProvider(),
+          create: (_) => HomeProvider(),
         ),
 
         // =========================
         // 🔥 Ranking
         // =========================
         ChangeNotifierProvider(
-
-          create: (_) =>
-              RankingProvider(),
+          create: (_) => RankingProvider(),
         ),
 
         // =========================
         // 🔥 Main Page
         // =========================
         ChangeNotifierProvider(
-
-          create: (_) =>
-              MainPageProvider(),
+          create: (_) => MainPageProvider(),
         ),
 
         // =========================
         // 🔥 Prediction
         // =========================
         ChangeNotifierProvider(
-
-          create: (_) =>
-              PredictionProvider(),
+          create: (_) => PredictionProvider(),
         ),
 
         // =========================
         // 🔥 Scroll Top
         // =========================
         ChangeNotifierProvider(
-
-          create: (_) =>
-              ScrollTopProvider(),
+          create: (_) => ScrollTopProvider(),
         ),
 
         // =========================
         // 🔥 Banner
         // =========================
         ChangeNotifierProvider(
-
           create: (_) {
-
             final BannerProvider provider =
                 BannerProvider();
 
@@ -198,84 +165,62 @@ Future<void> main() async {
           },
         ),
       ],
-
       child: const MyApp(),
     ),
   );
 }
 
-class MyApp
-    extends StatelessWidget {
-
+class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
   });
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
-
+  Widget build(BuildContext context) {
     return MaterialApp(
-
       // =========================
       // 🔥 DeepLink用
       // =========================
       navigatorKey: navigatorKey,
 
-      debugShowCheckedModeBanner:
-          false,
+      debugShowCheckedModeBanner: false,
 
       title: "競馬AI予想",
 
       theme: ThemeData(
-
         // =========================
         // 🔥 Noto Sans JP
         // 全体適用
         // =========================
-        textTheme:
-            GoogleFonts
-                .notoSansJpTextTheme(
-
-          Theme.of(context)
-              .textTheme,
+        textTheme: GoogleFonts.notoSansJpTextTheme(
+          Theme.of(context).textTheme,
         ),
 
         // =========================
         // 🔥 基本カラー
         // =========================
-        primarySwatch:
-            Colors.indigo,
+        primarySwatch: Colors.indigo,
 
-        scaffoldBackgroundColor:
-            const Color(
+        scaffoldBackgroundColor: const Color(
           0xFFF4F4F4,
         ),
 
         // =========================
         // 🔥 AppBar Theme
         // =========================
-        appBarTheme:
-            AppBarTheme(
-
+        appBarTheme: AppBarTheme(
           elevation: 0,
 
-          backgroundColor:
-              Colors.black,
+          backgroundColor: Colors.black,
 
-          foregroundColor:
-              Colors.white,
+          foregroundColor: Colors.white,
 
           centerTitle: true,
 
-          titleTextStyle:
-              GoogleFonts.notoSansJp(
-
+          titleTextStyle: GoogleFonts.notoSansJp(
             fontSize: 24,
 
-            fontWeight:
-                FontWeight.bold,
+            fontWeight: FontWeight.bold,
 
             color: Colors.white,
           ),
@@ -286,29 +231,36 @@ class MyApp
         // =========================
         bottomNavigationBarTheme:
             BottomNavigationBarThemeData(
+          backgroundColor: const Color(0xFF0D47A1),
 
-          backgroundColor:
-              Colors.black,
-
-          selectedItemColor:
-              Colors.white,
-
-          unselectedItemColor:
-              Colors.grey,
+          // =========================
+          // 🔥 選択中
+          // FontWeight.w900
+          // =========================
+          selectedItemColor: Colors.white,
 
           selectedLabelStyle:
               GoogleFonts.notoSansJp(
-
-            fontWeight:
-                FontWeight.bold,
-
             fontSize: 13,
+
+            fontWeight: FontWeight.w900,
+
+            color: Colors.white,
           ),
+
+          // =========================
+          // 🔥 非選択中
+          // FontWeight.w500
+          // =========================
+          unselectedItemColor: Colors.grey,
 
           unselectedLabelStyle:
               GoogleFonts.notoSansJp(
-
             fontSize: 12,
+
+            fontWeight: FontWeight.w500,
+
+            color: Colors.grey,
           ),
         ),
 
@@ -317,28 +269,17 @@ class MyApp
         // =========================
         elevatedButtonTheme:
             ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black,
 
-          style:
-              ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
 
-            backgroundColor:
-                Colors.black,
-
-            foregroundColor:
-                Colors.white,
-
-            textStyle:
-                GoogleFonts.notoSansJp(
-
-              fontWeight:
-                  FontWeight.bold,
+            textStyle: GoogleFonts.notoSansJp(
+              fontWeight: FontWeight.bold,
             ),
 
-            shape:
-                RoundedRectangleBorder(
-
-              borderRadius:
-                  BorderRadius.circular(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
                 12,
               ),
             ),
@@ -349,14 +290,10 @@ class MyApp
         // 🔥 Card Theme
         // =========================
         cardTheme: CardThemeData(
-
           elevation: 3,
 
-          shape:
-              RoundedRectangleBorder(
-
-            borderRadius:
-                BorderRadius.circular(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
               16,
             ),
           ),

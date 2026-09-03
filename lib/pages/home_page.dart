@@ -239,7 +239,7 @@ class _HomePageState
 
                         child: Image.asset(
 
-                          'assets/images/home_header.png',
+                          'assets/images/home_header2.png',
 
                           fit: BoxFit.cover,
                         ),
