@@ -194,7 +194,7 @@ class SiteCard extends StatelessWidget {
                                     .bold,
 
                             color:
-                                Color(0xFF0D47A1),
+                                Color(0xFF1A237E),
                           ),
                         ),
 

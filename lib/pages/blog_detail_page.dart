@@ -366,7 +366,7 @@ class _BlogDetailPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFF0D47A1),
+            Color(0xFF1A237E),
 
         centerTitle: true,
 

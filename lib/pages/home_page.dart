@@ -118,7 +118,7 @@ class _HomePageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFF0D47A1),
+            Color(0xFF1A237E),
 
         centerTitle: true,
 
@@ -239,7 +239,7 @@ class _HomePageState
 
                         child: Image.asset(
 
-                          'assets/images/home_header2.png',
+                          'assets/images/home_header.png',
 
                           fit: BoxFit.cover,
                         ),
@@ -352,7 +352,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Color(0xFF1976D2),
+                              Color(0xFF1A237E),
 
                           padding:
                               const EdgeInsets
@@ -527,7 +527,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Color(0xFF1976D2),
+                              Color(0xFF1A237E),
 
                           padding:
                               const EdgeInsets

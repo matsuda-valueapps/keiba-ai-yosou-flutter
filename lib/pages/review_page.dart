@@ -708,19 +708,7 @@ class _ReviewPageState
 
                 decoration: BoxDecoration(
 
-                  gradient: const LinearGradient(
-
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-
-                    colors: [
-
-                    Color(0xFF0288D1),
-
-                    Color(0xFF03A9F4),
-
-                    ],
-                  ),
+                  color: const Color(0xFF1A237E),
 
                   borderRadius:
                       BorderRadius.circular(14),
@@ -958,7 +946,7 @@ class _ReviewPageState
                                   .bold,
 
                           color:
-                              Color(0xFF0D47A1),
+                              Color(0xFF1A237E),
                         ),
                       ),
 
@@ -1078,19 +1066,7 @@ class _ReviewPageState
 
                   decoration: BoxDecoration(
 
-                    gradient: const LinearGradient(
-
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-
-                      colors: [
-
-                      Color(0xFF0288D1),
-
-                      Color(0xFF03A9F4),
-
-                      ],
-                    ),
+                    color: const Color(0xFF1A237E),
 
                     borderRadius: BorderRadius.circular(14),
 
@@ -1180,7 +1156,7 @@ class _ReviewPageState
 
         backgroundColor:
             const Color(
-          0xFF0D47A1,
+          0xFF1A237E,
         ),
 
         centerTitle: true,

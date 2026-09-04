@@ -237,7 +237,7 @@ class _RankingPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFF0D47A1),
+            Color(0xFF1A237E),
 
         centerTitle: true,
 
@@ -302,7 +302,7 @@ class _RankingPageState
                               child: Image.asset(
 
                                 provider.tabIndex == 0
-                                    ? 'assets/images/ranking_header1.png'
+                                    ? 'assets/images/ranking_header.png'
                                     : 'assets/images/ranking_header2.png',
 
                                 fit: BoxFit.cover,
@@ -369,7 +369,7 @@ class _RankingPageState
                                         color:
                                             provider.tabIndex ==
                                                     0
-                                                ? const Color(0xFF0D47A1)
+                                                ? const Color(0xFF1A237E)
                                                 : Colors.grey
                                                     .shade300,
 
@@ -394,7 +394,7 @@ class _RankingPageState
                                                 provider.tabIndex ==
                                                         0
                                                     ? Colors.white
-                                                    : Colors.blue[900],
+                                                    : Colors.indigo[900],
 
                                             fontWeight:
                                                 FontWeight.bold,
@@ -448,7 +448,7 @@ class _RankingPageState
                                         color:
                                             provider.tabIndex ==
                                                     1
-                                                ? const Color(0xFF0D47A1)
+                                                ? const Color(0xFF1A237E)
                                                 : Colors.grey
                                                     .shade300,
 
@@ -473,7 +473,7 @@ class _RankingPageState
                                                 provider.tabIndex ==
                                                         1
                                                     ? Colors.white
-                                                    : Colors.blue[900],
+                                                    : Colors.indigo[900],
 
                                             fontWeight:
                                                 FontWeight.bold,

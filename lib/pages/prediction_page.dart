@@ -352,7 +352,7 @@ class _PredictionPageState
 
           style: const TextStyle(
 
-            color: Color(0xFF0D47A1),
+            color: Color(0xFF1A237E),
 
             fontWeight:
                 FontWeight.bold,
@@ -492,7 +492,7 @@ class _PredictionPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFF0D47A1),
+            Color(0xFF1A237E),
 
         centerTitle: true,
 
@@ -595,14 +595,7 @@ class _PredictionPageState
 
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              gradient: const LinearGradient(
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                colors: [
-                                Color(0xFF0D47A1),
-                                Color(0xFF1565C0),
-                                ],
-                              ),
+                              color: const Color(0xFF1A237E),
                             ),
 
                             child: Text(
@@ -662,7 +655,7 @@ class _PredictionPageState
 
                                 border: Border.all(
                                   color:
-                                      Colors.blue.shade900,
+                                      Colors.indigo.shade900,
                                   width: 2,
                                 ),
                               ),
@@ -698,7 +691,7 @@ class _PredictionPageState
 
                                     size: 36,
 
-                                    color: Color(0xFF0D47A1),
+                                    color: Color(0xFF1A237E),
                                   ),
                                 ],
                               ),

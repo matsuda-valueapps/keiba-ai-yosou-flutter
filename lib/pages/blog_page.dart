@@ -299,7 +299,7 @@ class _BlogPageState
                           FontWeight.bold,
 
                       color:
-                          Color(0xFF0D47A1),
+                          Color(0xFF1A237E),
                     ),
                   ),
 
@@ -320,19 +320,7 @@ class _BlogPageState
                     decoration:
                         BoxDecoration(
 
-                      gradient: const LinearGradient(
-
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-
-                        colors: [
-
-                        Color(0xFF0288D1),
-
-                        Color(0xFF03A9F4),
-
-                        ],
-                      ),
+                      color: const Color(0xFF1A237E),
 
                       borderRadius:
                           BorderRadius
@@ -512,7 +500,7 @@ class _BlogPageState
       appBar: AppBar(
 
         backgroundColor:
-            Color(0xFF0D47A1),
+            Color(0xFF1A237E),
 
         centerTitle: true,
 

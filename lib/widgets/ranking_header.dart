@@ -39,12 +39,11 @@ class RankingHeader extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
 
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFF0D47A1),
-            Color(0xFF1565C0),
-          ],
-        ),
+        // =========================
+        // 背景色
+        // グラデーションなし
+        // =========================
+        color: const Color(0xFF1A237E),
       ),
 
       child: Row(

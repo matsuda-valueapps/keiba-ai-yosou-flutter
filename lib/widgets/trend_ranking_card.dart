@@ -265,16 +265,7 @@ class TrendRankingCard extends StatelessWidget {
 
                             shape: BoxShape.circle,
 
-                            gradient: const LinearGradient(
-
-                              colors: [
-
-                              Color(0xFF42A5F5),
-
-                              Color(0xFF1976D2),
-
-                              ],
-                            ),
+                            color: const Color(0xFF1A237E),
 
                             boxShadow: [
 
@@ -600,19 +591,7 @@ class TrendRankingCard extends StatelessWidget {
 
                   decoration: BoxDecoration(
 
-                    gradient: const LinearGradient(
-
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-
-                      colors: [
-
-                      Color(0xFF0288D1),
-
-                      Color(0xFF03A9F4),
-
-                      ],
-                    ),
+                    color: const Color(0xFF1A237E),
 
                     borderRadius: BorderRadius.circular(14),
 
@@ -699,7 +678,7 @@ class TrendRankingCard extends StatelessWidget {
                   decoration:
                       BoxDecoration(
 
-                    color: Colors.blue,
+                    color: Colors.indigo[900],
 
                     borderRadius:
                         BorderRadius.circular(
