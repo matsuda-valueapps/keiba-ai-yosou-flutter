@@ -45,6 +45,13 @@ flutter:
     - assets/images/medal_gold.png
     - assets/images/medal_silver.png
     - assets/images/medal_bronze.png
+    - assets/images/medal_4th.png
+    - assets/images/medal_5th.png
+    - assets/images/medal_6th.png
+    - assets/images/medal_7th.png
+    - assets/images/medal_8th.png
+    - assets/images/medal_9th.png
+    - assets/images/medal_10th.png
     - assets/icon/icon.png
     - assets/icon/home.png
     - assets/icon/ranking.png
