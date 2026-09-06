@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
-
-// =========================
-// 🔥 画像キャッシュ
-// =========================
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../models/ranking_model.dart';
 
@@ -21,12 +17,6 @@ class HitRankingCard extends StatelessWidget {
     super.key,
     required this.ranking,
   });
-
-  // =========================
-  // 🔥 API BASE URL
-  // =========================
-  static const String baseUrl =
-      "https://api.keiba-ai-yosou.com";
 
   // =========================
   // ⭐ メダル色
@@ -95,8 +85,12 @@ class HitRankingCard extends StatelessWidget {
   // ここを変更することで、
   // 1～10位を個別に調整できます。
   //
+  // 現在の設定
+  // 1～3位  : 120px
+  // 4～10位 : 80px
+  //
   // ※ メダル配置領域そのものは
-  //    110 × 110px のまま維持します。
+  //    130 × 130px のまま維持します。
   // =========================
   double medalSize(int rank) {
     switch (rank) {
@@ -167,36 +161,6 @@ class HitRankingCard extends StatelessWidget {
   }
 
   // =========================
-  // 🔥 画像URL補正
-  // =========================
-  String buildImageUrl(
-    String raw,
-  ) {
-    if (raw.isEmpty) {
-      return "";
-    }
-
-    // localhost → 実IP
-    raw = raw.replaceAll(
-      "127.0.0.1",
-      "api.keiba-ai-yosou.com",
-    );
-
-    // 完全URL
-    if (raw.startsWith("http")) {
-      return raw;
-    }
-
-    // /uploads/xxx
-    if (raw.startsWith("/")) {
-      return "$baseUrl$raw";
-    }
-
-    // uploads/xxx
-    return "$baseUrl/$raw";
-  }
-
-  // =========================
   // ⭐ ブログ詳細遷移
   // =========================
   void openBlogDetail(
@@ -235,13 +199,8 @@ class HitRankingCard extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final color = medal(ranking.rank);
-
-    // =========================
-    // 🔥 サイト画像URL
-    // =========================
-    final imageUrl = buildImageUrl(
-      ranking.imageUrl,
+    final color = medal(
+      ranking.rank,
     );
 
     // =========================
@@ -273,16 +232,24 @@ class HitRankingCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           16,
         ),
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            ranking.rank <= 3
-                ? color.withValues(alpha: .15)
-                : const Color(0xFFBBDEFB),
-            Colors.white,
-          ],
-        ),
+
+        // =========================
+        // ⭐ 背景色
+        //
+        // これまでのグラデーションを廃止し、
+        // 左側に使用していた色を
+        // カード全体に単色で適用
+        // =========================
+        color: ranking.rank <= 3
+            ? color.withValues(alpha: .15)
+            : const Color(0xFFE8EAF6),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -377,199 +344,93 @@ class HitRankingCard extends StatelessWidget {
                         CrossAxisAlignment.start,
                     children: [
                       // =========================
-                      // 上段
-                      // サイト名 + 画像
+                      // サイト名・日付・レース名
                       // =========================
-                      Row(
+                      Column(
                         crossAxisAlignment:
-                            CrossAxisAlignment
-                                .start,
+                            CrossAxisAlignment.start,
                         children: [
                           // =========================
-                          // サイト名等
+                          // サイト名
                           // =========================
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment
-                                      .start,
-                              children: [
-                                // =========================
-                                // サイト名
-                                // =========================
-                                Text(
-                                  ranking.siteName,
-                                  style:
-                                      const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight:
-                                        FontWeight.bold,
-                                  ),
-                                ),
-
-                                const SizedBox(
-                                  height: 4,
-                                ),
-
-                                // =========================
-                                // 日付
-                                // =========================
-                                Text(
-                                  ranking.date,
-                                  style:
-                                      const TextStyle(
-                                    fontSize: 13,
-                                  ),
-                                ),
-
-                                const SizedBox(
-                                  height: 4,
-                                ),
-
-                                // =========================
-                                // レース名
-                                // =========================
-                                Text(
-                                  ranking.raceName,
-                                  style:
-                                      const TextStyle(
-                                    fontWeight:
-                                        FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+                          Text(
+                            ranking.siteName,
+                            style:
+                                const TextStyle(
+                              fontSize: 20,
+                              fontWeight:
+                                  FontWeight.w900,
                             ),
                           ),
 
                           const SizedBox(
-                            width: 4,
+                            height: 4,
                           ),
 
                           // =========================
-                          // 🔥 丸画像（タップ可能）
+                          // 日付
                           // =========================
-                          if (imageUrl.isNotEmpty)
-                            InkWell(
-                              borderRadius:
-                                  BorderRadius.circular(
-                                100,
-                              ),
-                              onTap: () {
-                                open(
-                                  ranking.siteUrl,
-                                );
-                              },
-                              child: Container(
-                                decoration:
-                                    const BoxDecoration(
-                                  shape:
-                                      BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          Colors.black26,
-                                      blurRadius: 8,
-                                      offset:
-                                          Offset(
-                                        0,
-                                        4,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets
-                                          .all(
-                                    2,
-                                  ),
-                                  decoration:
-                                      BoxDecoration(
-                                    shape:
-                                        BoxShape.circle,
-                                    border:
-                                        Border.all(
-                                      color:
-                                          Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  child: ClipOval(
-                                    child:
-                                        CachedNetworkImage(
-                                      imageUrl:
-                                          imageUrl,
-                                      width: 72,
-                                      height: 72,
-                                      fit: BoxFit.cover,
-                                      filterQuality:
-                                          FilterQuality
-                                              .high,
-                                      placeholder:
-                                          (_, _) {
-                                        return Container(
-                                          width: 72,
-                                          height: 72,
-                                          alignment:
-                                              Alignment
-                                                  .center,
-                                          child:
-                                              const SizedBox(
-                                            width: 20,
-                                            height: 20,
-                                            child:
-                                                CircularProgressIndicator(
-                                              strokeWidth:
-                                                  2,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      errorWidget:
-                                          (_, _, _) {
-                                        return Container(
-                                          width: 72,
-                                          height: 72,
-                                          decoration:
-                                              BoxDecoration(
-                                            color: Colors
-                                                .grey
-                                                .shade300,
-                                            shape:
-                                                BoxShape
-                                                    .circle,
-                                          ),
-                                          child:
-                                              const Icon(
-                                            Icons.image,
-                                            color:
-                                                Colors.white,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ),
+                          Text(
+                            ranking.date,
+                            style:
+                                const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
                             ),
+                          ),
+
+                          const SizedBox(
+                            height: 4,
+                          ),
+
+                          // =========================
+                          // レース名
+                          // =========================
+                          Text(
+                            ranking.raceName,
+                            style:
+                                const TextStyle(
+                              fontWeight:
+                                  FontWeight.w800,
+                            ),
+                          ),
                         ],
                       ),
 
                       const SizedBox(
-                        height: 12,
+                        height: 16,
                       ),
 
                       // =========================
-                      // 金額
+                      // ⭐ 金額
+                      //
+                      // 数字部分のみ
+                      // Inter Tight を使用
+                      //
+                      // 「円」は既存フォントを使用
                       // =========================
-                      Text(
-                        "${formatYen(ranking.amount)}円",
-                        style:
-                            const TextStyle(
-                          color: Colors.red,
-                          fontSize: 26,
-                          fontWeight:
-                              FontWeight.bold,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: formatYen(
+                                ranking.amount,
+                              ),
+                              style: GoogleFonts.roboto(
+                                color: Colors.red,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const TextSpan(
+                              text: '円',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -683,7 +544,10 @@ class HitRankingCard extends StatelessWidget {
                             Colors.black12,
                         blurRadius: 6,
                         offset:
-                            Offset(0, 3),
+                            Offset(
+                          0,
+                          3,
+                        ),
                       ),
                     ],
                   ),

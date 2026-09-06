@@ -138,7 +138,7 @@ class _PredictionPageState
         weekdays[now.weekday - 1];
 
     return
-        "${now.year}年${now.month}月${now.day}日（$weekday）";
+        "${now.year}年${now.month}月${now.day}日($weekday)";
   }
 
   // =========================
@@ -374,7 +374,7 @@ class _PredictionPageState
 
             const Text(
 
-              "推奨馬 ",
+              "推奨馬",
 
               style: TextStyle(
 

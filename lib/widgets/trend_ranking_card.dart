@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:url_launcher/url_launcher.dart';
-
-// =========================
-// 🔥 画像キャッシュ
-// =========================
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../models/ranking_model.dart';
 
@@ -18,12 +13,6 @@ class TrendRankingCard extends StatelessWidget {
     super.key,
     required this.ranking,
   });
-
-  // =========================
-  // 🔥 API BASE URL
-  // =========================
-  static const String baseUrl =
-      "https://api.keiba-ai-yosou.com";
 
   // =========================
   // ⭐ メダル色
@@ -94,7 +83,7 @@ class TrendRankingCard extends StatelessWidget {
   // 各順位のサイズを個別調整できます。
   //
   // 現在の設定
-  // 1～3位  : 130px
+  // 1～3位  : 120px
   // 4～10位 : 80px
   // =========================
   double medalSize(int rank) {
@@ -155,36 +144,6 @@ class TrendRankingCard extends StatelessWidget {
   }
 
   // =========================
-  // 🔥 画像URL補正
-  // =========================
-  String buildImageUrl(
-    String raw,
-  ) {
-    if (raw.isEmpty) {
-      return "";
-    }
-
-    // localhost → 実IP
-    raw = raw.replaceAll(
-      "127.0.0.1",
-      "api.keiba-ai-yosou.com",
-    );
-
-    // 完全URL
-    if (raw.startsWith("http")) {
-      return raw;
-    }
-
-    // /uploads/xxx
-    if (raw.startsWith("/")) {
-      return "$baseUrl$raw";
-    }
-
-    // uploads/xxx
-    return "$baseUrl/$raw";
-  }
-
-  // =========================
   // ⭐ ブログ詳細遷移
   // =========================
   void openBlogDetail(
@@ -228,13 +187,6 @@ class TrendRankingCard extends StatelessWidget {
     );
 
     // =========================
-    // 🔥 サイト画像URL
-    // =========================
-    final imageUrl = buildImageUrl(
-      ranking.imageUrl,
-    );
-
-    // =========================
     // ⭐ ランキングメダル画像
     // =========================
     final medalImage = medalAssetPath(
@@ -264,16 +216,24 @@ class TrendRankingCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           16,
         ),
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            ranking.rank <= 3
-                ? color.withValues(alpha: .15)
-                : const Color(0xFFBBDEFB),
-            Colors.white,
-          ],
-        ),
+
+        // =========================
+        // ⭐ 背景色
+        //
+        // これまでのグラデーションを廃止し、
+        // 左側に使用していた色を
+        // カード全体に単色で適用
+        // =========================
+        color: ranking.rank <= 3
+            ? color.withValues(alpha: .15)
+            : const Color(0xFFE8EAF6),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -365,167 +325,42 @@ class TrendRankingCard extends StatelessWidget {
                     children: [
                       // =========================
                       // 上段
-                      // サイト名 + 画像
+                      // サイト名
                       // =========================
-                      Row(
+                      Column(
                         crossAxisAlignment:
-                            CrossAxisAlignment
-                                .start,
+                            CrossAxisAlignment.start,
                         children: [
                           // =========================
-                          // 左情報
+                          // サイト名
                           // =========================
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment
-                                      .start,
-                              children: [
-                                // =========================
-                                // サイト名
-                                // =========================
-                                Text(
-                                  ranking.siteName,
-                                  style:
-                                      const TextStyle(
-                                    fontWeight:
-                                        FontWeight.bold,
-                                    fontSize: 17,
-                                  ),
-                                ),
-
-                                const SizedBox(
-                                  height: 24,
-                                ),
-
-                                // =========================
-                                // 🔥 月間表示
-                                // =========================
-                                const Text(
-                                  "先月の月間",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight:
-                                        FontWeight.w600,
-                                    color:
-                                        Colors.black87,
-                                  ),
-                                ),
-                              ],
+                          Text(
+                            ranking.siteName,
+                            style:
+                                const TextStyle(
+                              fontWeight:
+                                  FontWeight.w900,
+                              fontSize: 20,
                             ),
                           ),
 
                           const SizedBox(
-                            width: 4,
+                            height: 24,
                           ),
 
                           // =========================
-                          // 🔥 丸画像（タップ可能）
+                          // 🔥 月間表示
                           // =========================
-                          if (imageUrl.isNotEmpty)
-                            InkWell(
-                              borderRadius:
-                                  BorderRadius.circular(
-                                100,
-                              ),
-                              onTap: () {
-                                open(
-                                  ranking.siteUrl,
-                                );
-                              },
-                              child: Container(
-                                decoration:
-                                    BoxDecoration(
-                                  shape:
-                                      BoxShape.circle,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          Colors.black26,
-                                      blurRadius: 8,
-                                      offset:
-                                          const Offset(
-                                        0,
-                                        4,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets
-                                          .all(
-                                    2,
-                                  ),
-                                  decoration:
-                                      BoxDecoration(
-                                    shape:
-                                        BoxShape.circle,
-                                    border:
-                                        Border.all(
-                                      color:
-                                          Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  child: ClipOval(
-                                    child:
-                                        CachedNetworkImage(
-                                      imageUrl:
-                                          imageUrl,
-                                      width: 72,
-                                      height: 72,
-                                      fit: BoxFit.cover,
-                                      filterQuality:
-                                          FilterQuality
-                                              .high,
-                                      placeholder:
-                                          (_, _) {
-                                        return Container(
-                                          width: 72,
-                                          height: 72,
-                                          alignment:
-                                              Alignment
-                                                  .center,
-                                          child:
-                                              const SizedBox(
-                                            width: 20,
-                                            height: 20,
-                                            child:
-                                                CircularProgressIndicator(
-                                              strokeWidth:
-                                                  2,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      errorWidget:
-                                          (_, _, _) {
-                                        return Container(
-                                          width: 72,
-                                          height: 72,
-                                          decoration:
-                                              BoxDecoration(
-                                            color: Colors
-                                                .grey
-                                                .shade300,
-                                            shape:
-                                                BoxShape
-                                                    .circle,
-                                          ),
-                                          child:
-                                              const Icon(
-                                            Icons.image,
-                                            color:
-                                                Colors.white,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ),
+                          const Text(
+                            "先月の月間",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight:
+                                  FontWeight.w800,
+                              color:
+                                  Colors.black87,
                             ),
+                          ),
                         ],
                       ),
 
@@ -534,16 +369,47 @@ class TrendRankingCard extends StatelessWidget {
                       ),
 
                       // =========================
-                      // 的中数
+                      // ⭐ 的中数
+                      //
+                      // 「的中数：」→ Noto Sans JP
+                      // 数字 → Roboto
+                      // 「回」→ Noto Sans JP
+                      //
+                      // fontSize / fontWeight /
+                      // color は既存設定を維持
                       // =========================
-                      Text(
-                        "的中数：${ranking.hitCount}回",
-                        style:
-                            const TextStyle(
-                          color: Colors.red,
-                          fontSize: 22,
-                          fontWeight:
-                              FontWeight.bold,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            const TextSpan(
+                              text: "的中数：",
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 24,
+                                fontWeight:
+                                    FontWeight.w900,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ranking.hitCount
+                                  .toString(),
+                              style: GoogleFonts.roboto(
+                                color: Colors.red,
+                                fontSize: 30,
+                                fontWeight:
+                                    FontWeight.w700,
+                              ),
+                            ),
+                            const TextSpan(
+                              text: "回",
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 27,
+                                fontWeight:
+                                    FontWeight.w900,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -657,7 +523,10 @@ class TrendRankingCard extends StatelessWidget {
                             Colors.black12,
                         blurRadius: 6,
                         offset:
-                            Offset(0, 3),
+                            Offset(
+                          0,
+                          3,
+                        ),
                       ),
                     ],
                   ),

@@ -336,7 +336,7 @@ class _HomePageState
                           .length;
 
                   // =========================
-                  // View more
+                  // もっと見る
                   // =========================
                   if (
                       provider.rankings.isNotEmpty &&
@@ -352,7 +352,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Color(0xFF1A237E),
+                              Color(0xFF3F51B5),
 
                           padding:
                               const EdgeInsets
@@ -511,7 +511,7 @@ class _HomePageState
                           .length;
 
                   // =========================
-                  // View more
+                  // もっと見る
                   // =========================
                   if (
                       provider.rankings.isNotEmpty &&
@@ -527,7 +527,7 @@ class _HomePageState
                                 .styleFrom(
 
                           backgroundColor:
-                              Color(0xFF1A237E),
+                              Color(0xFF3F51B5),
 
                           padding:
                               const EdgeInsets
