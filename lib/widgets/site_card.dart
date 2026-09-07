@@ -187,11 +187,11 @@ class SiteCard extends StatelessWidget {
                           style:
                               const TextStyle(
 
-                            fontSize: 18,
+                            fontSize: 20,
 
                             fontWeight:
                                 FontWeight
-                                    .bold,
+                                    .w900,
 
                             color:
                                 Color(0xFF1A237E),
@@ -216,7 +216,7 @@ class SiteCard extends StatelessWidget {
                           style:
                               const TextStyle(
 
-                            fontSize: 14,
+                            fontSize: 16,
 
                             height: 1.4,
                           ),

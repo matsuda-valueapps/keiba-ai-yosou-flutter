@@ -378,10 +378,12 @@ class _PredictionPageState
 
               style: TextStyle(
 
+                color: Color(0xFF1A237E),
+                
                 fontWeight:
-                    FontWeight.bold,
+                    FontWeight.w900,
 
-                fontSize: 16,
+                fontSize: 20,
               ),
             ),
 
@@ -609,9 +611,9 @@ class _PredictionPageState
                                     Colors.white,
 
                                 fontWeight:
-                                    FontWeight.bold,
+                                    FontWeight.w900,
 
-                                fontSize: 18,
+                                fontSize: 24,
                               ),
                             ),
                           ),
@@ -674,11 +676,11 @@ class _PredictionPageState
 
                                       style: const TextStyle(
 
-                                        fontSize: 18,
+                                        fontSize: 20,
 
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w900,
 
-                                        color: Colors.black87,
+                                        color: Color(0xFF1A237E),
                                       ),
 
                                       overflow: TextOverflow.ellipsis,

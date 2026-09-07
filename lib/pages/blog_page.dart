@@ -284,7 +284,7 @@ class _BlogPageState
 
                     title,
 
-                    maxLines: 2,
+                    maxLines: 3,
 
                     overflow:
                         TextOverflow
@@ -293,10 +293,10 @@ class _BlogPageState
                     style:
                         const TextStyle(
 
-                      fontSize: 17,
+                      fontSize: 20,
 
                       fontWeight:
-                          FontWeight.bold,
+                          FontWeight.w900,
 
                       color:
                           Color(0xFF1A237E),
@@ -341,13 +341,14 @@ class _BlogPageState
 
                     child: const Text(
 
-                      "競馬ブログを読む",
+                      "ブログの続きを読む",
 
                       style: TextStyle(
 
                         color:
                             Colors.white,
 
+                        fontSize: 16,
                         fontWeight:
                             FontWeight
                                 .bold,

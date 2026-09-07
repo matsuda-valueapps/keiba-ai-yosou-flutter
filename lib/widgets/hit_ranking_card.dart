@@ -161,6 +161,58 @@ class HitRankingCard extends StatelessWidget {
   }
 
   // =========================
+  // ⭐ 日付フォーマット
+  //
+  // 2026-09-06
+  // ↓
+  // 2026年9月6日(日)
+  //
+  // 2026/09/06 にも対応
+  // =========================
+  String formatDate(
+    String date,
+  ) {
+    try {
+      final normalizedDate = date
+          .trim()
+          .replaceAll('/', '-');
+
+      final parsedDate = DateTime.parse(
+        normalizedDate,
+      );
+
+      // =========================
+      // ⭐ 日本語曜日
+      // DateFormatのロケールに依存しない
+      // =========================
+      const weekdays = [
+        '月',
+        '火',
+        '水',
+        '木',
+        '金',
+        '土',
+        '日',
+      ];
+
+      final weekday = weekdays[
+        parsedDate.weekday - 1
+      ];
+
+      return '${parsedDate.year}年'
+          '${parsedDate.month}月'
+          '${parsedDate.day}日'
+          '($weekday)';
+    } catch (_) {
+      // =========================
+      // ⭐ 日付が想定外の場合
+      // 元の文字列をそのまま表示
+      // =========================
+      return date;
+    }
+  }
+
+  // =========================
   // ⭐ ブログ詳細遷移
   // =========================
   void openBlogDetail(
@@ -351,15 +403,34 @@ class HitRankingCard extends StatelessWidget {
                             CrossAxisAlignment.start,
                         children: [
                           // =========================
-                          // サイト名
+                          // ⭐ サイト名
+                          //
+                          // 必ず1行で表示
+                          //
+                          // 6.6インチなどの広い画面では
+                          // fontSize: 20 を維持。
+                          //
+                          // 5.0インチなどの狭い画面で
+                          // 横幅が足りない場合のみ
+                          // 自動的に縮小。
                           // =========================
-                          Text(
-                            ranking.siteName,
-                            style:
-                                const TextStyle(
-                              fontSize: 20,
-                              fontWeight:
-                                  FontWeight.w900,
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment:
+                                Alignment.centerLeft,
+                            child: Text(
+                              ranking.siteName,
+                              maxLines: 1,
+                              softWrap: false,
+                              overflow:
+                                  TextOverflow.visible,
+                              style:
+                                  const TextStyle(
+                                fontSize: 20,
+                                fontWeight:
+                                    FontWeight.w900,
+                                color:Color(0xFF1A237E),  
+                              ),
                             ),
                           ),
 
@@ -369,13 +440,21 @@ class HitRankingCard extends StatelessWidget {
 
                           // =========================
                           // 日付
+                          //
+                          // 例：
+                          // 2026-09-06
+                          // ↓
+                          // 2026年9月6日(日)
                           // =========================
                           Text(
-                            ranking.date,
+                            formatDate(
+                              ranking.date,
+                            ),
                             style:
                                 const TextStyle(
                               fontSize: 14,
-                              fontWeight: FontWeight.w800,
+                              fontWeight:
+                                  FontWeight.w800,
                             ),
                           ),
 
@@ -405,32 +484,45 @@ class HitRankingCard extends StatelessWidget {
                       // ⭐ 金額
                       //
                       // 数字部分のみ
-                      // Inter Tight を使用
+                      // Roboto を使用
                       //
                       // 「円」は既存フォントを使用
+                      //
+                      // ⭐ 画面幅が狭い場合でも
+                      // ⭐ 必ず1行で表示する
                       // =========================
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: formatYen(
-                                ranking.amount,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment:
+                            Alignment.centerLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: formatYen(
+                                  ranking.amount,
+                                ),
+                                style:
+                                    GoogleFonts.roboto(
+                                  color:
+                                      Colors.red,
+                                  fontSize: 32,
+                                  fontWeight:
+                                      FontWeight.w700,
+                                ),
                               ),
-                              style: GoogleFonts.roboto(
-                                color: Colors.red,
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
+                              const TextSpan(
+                                text: '円',
+                                style: TextStyle(
+                                  color:
+                                      Colors.red,
+                                  fontSize: 28,
+                                  fontWeight:
+                                      FontWeight.w900,
+                                ),
                               ),
-                            ),
-                            const TextSpan(
-                              text: '円',
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 26,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -504,6 +596,7 @@ class HitRankingCard extends StatelessWidget {
                       style:
                           TextStyle(
                         color: Colors.white,
+                        fontSize: 16,
                         fontWeight:
                             FontWeight.bold,
                       ),
@@ -528,7 +621,7 @@ class HitRankingCard extends StatelessWidget {
                 child: Container(
                   padding:
                       const EdgeInsets.all(
-                    12,
+                    14,
                   ),
                   decoration:
                       BoxDecoration(
@@ -536,7 +629,7 @@ class HitRankingCard extends StatelessWidget {
                         Colors.indigo[900],
                     borderRadius:
                         BorderRadius.circular(
-                      10,
+                      14,
                     ),
                     boxShadow: const [
                       BoxShadow(

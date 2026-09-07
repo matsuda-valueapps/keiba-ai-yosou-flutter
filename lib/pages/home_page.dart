@@ -22,24 +22,19 @@ import '../widgets/admob_banner_widget.dart';
 import '../models/site_model.dart';
 
 class HomePage extends StatefulWidget {
-
   const HomePage({
     super.key,
   });
 
   @override
-  State<HomePage> createState()
-      => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState
-    extends State<HomePage>
-
+class _HomePageState extends State<HomePage>
     // =========================
     // 🔥 IndexedStack状態保持
     // =========================
     with AutomaticKeepAliveClientMixin {
-
   // =========================
   // 🔥 KeepAlive
   // =========================
@@ -48,97 +43,70 @@ class _HomePageState
 
   @override
   void initState() {
-
     super.initState();
 
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) {
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
 
       // =========================
       // ホーム取得
       // =========================
-      context
-          .read<HomeProvider>()
-          .loadHome();
+      context.read<HomeProvider>().loadHome();
 
       // =========================
       // ランダムバナー変更
       // =========================
-      context
-          .read<BannerProvider>()
-          .pickRandomBanner();
+      context.read<BannerProvider>().pickRandomBanner();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     // =========================
     // 🔥 KeepAlive必須
     // =========================
     super.build(context);
 
-    final provider =
-        context.watch<HomeProvider>();
+    final provider = context.watch<HomeProvider>();
 
     // =========================
     // 🔥 ScrollController取得
     // =========================
     final scrollController =
-        context
-            .read<
-                ScrollTopProvider>()
-            .homeController;
+        context.read<ScrollTopProvider>().homeController;
 
     // =========================
     // ローディング
     // =========================
     if (provider.isLoading) {
-
       return const Scaffold(
-
         body: Center(
-
-          child:
-              CircularProgressIndicator(),
+          child: CircularProgressIndicator(),
         ),
       );
     }
 
     return Scaffold(
-
-      backgroundColor:
-          Colors.white,
+      backgroundColor: Colors.white,
 
       // =========================
       // AppBar
       // =========================
       appBar: AppBar(
-
-        backgroundColor:
-            Color(0xFF1A237E),
-
+        backgroundColor: const Color(0xFF1A237E),
         centerTitle: true,
 
         // =========================
         // 🔥 MainPage管理用
         // 戻る矢印非表示
         // =========================
-        automaticallyImplyLeading:
-            false,
+        automaticallyImplyLeading: false,
 
         title: const Text(
-
           "ホーム",
-
           style: TextStyle(
-
             color: Colors.white,
-
-            fontWeight:
-                FontWeight.bold,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -147,21 +115,16 @@ class _HomePageState
       // 本体
       // =========================
       body: Column(
-
         children: [
-
           // =========================
           // メインコンテンツ
           // =========================
           Expanded(
-
             child: RefreshIndicator(
-
               // =========================
               // async gap警告修正版
               // =========================
               onRefresh: () async {
-
                 final homeProvider =
                     context.read<HomeProvider>();
 
@@ -172,75 +135,49 @@ class _HomePageState
 
                 if (!mounted) return;
 
-                bannerProvider
-                    .pickRandomBanner();
+                bannerProvider.pickRandomBanner();
 
                 // =========================
                 // 🔥 更新後TOPへ
                 // =========================
-                scrollController
-                    .jumpTo(0);
+                scrollController.jumpTo(0);
               },
 
               child: ListView.builder(
-
                 // =========================
                 // 🔥 TOPスクロール制御
                 // =========================
-                controller:
-                    scrollController,
+                controller: scrollController,
 
                 // =========================
                 // 🔥 スクロール位置保持
                 // =========================
-                key:
-                    const PageStorageKey(
+                key: const PageStorageKey(
                   "home_page",
                 ),
 
                 itemCount:
                     1 +
-                    provider.rankings
-                        .take(3)
-                        .length +
+                    provider.rankings.take(3).length +
                     1 +
                     1 + // AdMob
-                    provider
-                        .trendRankings
-                        .take(3)
-                        .length +
+                    provider.trendRankings.take(3).length +
                     1 +
-                    provider
-                        .sites
-                        .length +
+                    provider.sites.length +
                     10,
 
-                itemBuilder:
-                    (context, index) {
-
+                itemBuilder: (context, index) {
                   // =========================
                   // TOPバナー
                   // =========================
                   if (index == 0) {
-
                     return Padding(
-
-                      padding:
-                          const EdgeInsets
-                              .all(12),
-
+                      padding: const EdgeInsets.all(12),
                       child: ClipRRect(
-
                         borderRadius:
-                            BorderRadius
-                                .circular(
-                          18,
-                        ),
-
+                            BorderRadius.circular(18),
                         child: Image.asset(
-
                           'assets/images/home_header.png',
-
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -252,17 +189,11 @@ class _HomePageState
                   // =========================
                   // 高額的中ランキング
                   // =========================
-                  if (
-                      index ==
-                          currentIndex) {
-
+                  if (index == currentIndex) {
                     return const RankingHeader(
-
                       title: "高額的中",
-
-                      icon:
-                          Icons.gps_fixed,
-                      showIcon: false,    
+                      icon: Icons.gps_fixed,
+                      showIcon: false,
                     );
                   }
 
@@ -273,25 +204,16 @@ class _HomePageState
                   // =========================
                   if (provider.rankings.isEmpty &&
                       index == currentIndex) {
-
                     return const Padding(
-
                       padding: EdgeInsets.symmetric(
                         vertical: 20,
                       ),
-
                       child: Center(
-
                         child: Text(
-
                           "現在ランキングはありません",
-
                           style: TextStyle(
-
                             fontSize: 16,
-
-                            fontWeight:
-                                FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -300,97 +222,72 @@ class _HomePageState
 
                   currentIndex++;
 
-                  if (
-                      provider.rankings.isNotEmpty &&
+                  // =========================
+                  // 高額的中ランキング一覧
+                  // =========================
+                  if (provider.rankings.isNotEmpty &&
                       index <
                           currentIndex +
-                              provider
-                                  .rankings
+                              provider.rankings
                                   .take(3)
                                   .length) {
-
                     final rankingIndex =
                         index - currentIndex;
 
-                    if (
-                        rankingIndex < 0 ||
+                    if (rankingIndex < 0 ||
                         rankingIndex >=
                             provider.rankings.length) {
-
                       return const SizedBox();
                     }
 
-                    final item =
-                        provider.rankings
-                            .take(3)
-                            .toList()[rankingIndex];
+                    final item = provider.rankings
+                        .take(3)
+                        .toList()[rankingIndex];
 
                     return HitRankingCard(
                       ranking: item,
                     );
                   }
 
-                  currentIndex +=
-                      provider.rankings
-                          .take(3)
-                          .length;
+                  currentIndex += provider.rankings
+                      .take(3)
+                      .length;
 
                   // =========================
+                  // 高額的中ランキング
                   // もっと見る
                   // =========================
-                  if (
-                      provider.rankings.isNotEmpty &&
+                  if (provider.rankings.isNotEmpty &&
                       index == currentIndex) {
-
                     return Center(
-
-                      child:
-                          ElevatedButton(
-
+                      child: ElevatedButton(
                         style:
-                            ElevatedButton
-                                .styleFrom(
-
+                            ElevatedButton.styleFrom(
                           backgroundColor:
-                              Color(0xFF3F51B5),
-
+                              const Color(0xFF3F51B5),
                           padding:
-                              const EdgeInsets
-                                  .symmetric(
-
-                            horizontal:
-                                30,
-
-                            vertical:
-                                10,
+                              const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 10,
                           ),
                         ),
-
                         onPressed: () {
+                          context
+                              .read<RankingProvider>()
+                              .changeTab(0);
 
                           context
-                              .read<
-                                  RankingProvider>()
-                              .changeTab(
-                            0,
-                          );
-
-                          context
-                              .read<
-                                  MainPageProvider>()
-                              .changeIndex(
-                            1,
-                          );
+                              .read<MainPageProvider>()
+                              .changeIndex(1);
                         },
-
                         child: const Text(
-
                           "もっと見る",
-
-                          style:
-                              TextStyle(
-                            color: Colors
-                                .white,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                                fontWeight:
+                                    FontWeight
+                                        .bold,
                           ),
                         ),
                       ),
@@ -404,14 +301,11 @@ class _HomePageState
                   // 高額的中と的中数の間
                   // =========================
                   if (index == currentIndex) {
-
                     return const Padding(
-
                       padding: EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 8,
                       ),
-
                       child: AdmobBannerWidget(
                         adUnitId:
                             'ca-app-pub-7409422327092258/1674994570',
@@ -424,18 +318,11 @@ class _HomePageState
                   // =========================
                   // 的中数ランキング
                   // =========================
-                  if (
-                      index ==
-                          currentIndex) {
-
+                  if (index == currentIndex) {
                     return const RankingHeader(
-
                       title: "的中数",
-
-                      icon:
-                          Icons
-                              .trending_up,
-                      showIcon: false,        
+                      icon: Icons.trending_up,
+                      showIcon: false,
                     );
                   }
 
@@ -446,25 +333,16 @@ class _HomePageState
                   // =========================
                   if (provider.trendRankings.isEmpty &&
                       index == currentIndex) {
-
                     return const Padding(
-
                       padding: EdgeInsets.symmetric(
                         vertical: 20,
                       ),
-
                       child: Center(
-
                         child: Text(
-
                           "現在ランキングはありません",
-
                           style: TextStyle(
-
                             fontSize: 16,
-
-                            fontWeight:
-                                FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -473,102 +351,91 @@ class _HomePageState
 
                   currentIndex++;
 
-                  if (
-                      provider.trendRankings.isNotEmpty &&
+                  // =========================
+                  // 的中数ランキング一覧
+                  // =========================
+                  if (provider.trendRankings.isNotEmpty &&
                       index <
                           currentIndex +
-                              provider
-                                  .trendRankings
+                              provider.trendRankings
                                   .take(3)
                                   .length) {
-
                     final rankingIndex =
                         index - currentIndex;
 
-                    if (
-                        rankingIndex < 0 ||
+                    if (rankingIndex < 0 ||
                         rankingIndex >=
                             provider.trendRankings.length) {
-
                       return const SizedBox();
                     }
 
-                    final item =
-                        provider
-                            .trendRankings
-                            .take(3)
-                            .toList()[rankingIndex];
+                    final item = provider
+                        .trendRankings
+                        .take(3)
+                        .toList()[rankingIndex];
 
                     return TrendRankingCard(
                       ranking: item,
                     );
                   }
 
-                  currentIndex +=
-                      provider
-                          .trendRankings
-                          .take(3)
-                          .length;
+                  currentIndex += provider.trendRankings
+                      .take(3)
+                      .length;
 
                   // =========================
+                  // 的中数ランキング
                   // もっと見る
                   // =========================
-                  if (
-                      provider.rankings.isNotEmpty &&
+                  if (provider.trendRankings.isNotEmpty &&
                       index == currentIndex) {
+                    return Column(
+                      children: [
+                        // =========================
+                        // もっと見るボタン
+                        // =========================
+                        Center(
+                          child: ElevatedButton(
+                            style:
+                                ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color(0xFF3F51B5),
+                              padding:
+                                  const EdgeInsets.symmetric(
+                                horizontal: 30,
+                                vertical: 10,
+                              ),
+                            ),
+                            onPressed: () {
+                              context
+                                  .read<RankingProvider>()
+                                  .changeTab(1);
 
-                    return Center(
-
-                      child:
-                          ElevatedButton(
-
-                        style:
-                            ElevatedButton
-                                .styleFrom(
-
-                          backgroundColor:
-                              Color(0xFF3F51B5),
-
-                          padding:
-                              const EdgeInsets
-                                  .symmetric(
-
-                            horizontal:
-                                30,
-
-                            vertical:
-                                10,
+                              context
+                                  .read<MainPageProvider>()
+                                  .changeIndex(1);
+                            },
+                            child: const Text(
+                              "もっと見る",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight:
+                                    FontWeight
+                                        .bold,
+                              ),
+                            ),
                           ),
                         ),
 
-                        onPressed: () {
-
-                          context
-                              .read<
-                                  RankingProvider>()
-                              .changeTab(
-                            1,
-                          );
-
-                          context
-                              .read<
-                                  MainPageProvider>()
-                              .changeIndex(
-                            1,
-                          );
-                        },
-
-                        child: const Text(
-
-                          "もっと見る",
-
-                          style:
-                              TextStyle(
-                            color: Colors
-                                .white,
-                          ),
+                        // =========================
+                        // 🔥 おすすめ競馬サイト
+                        // ヘッダーとの間隔
+                        // =========================
+                        const SizedBox(
+                          height: 16,
                         ),
-                      ),
+                      ],
                     );
                   }
 
@@ -577,20 +444,11 @@ class _HomePageState
                   // =========================
                   // おすすめ競馬サイト
                   // =========================
-                  if (
-                      index ==
-                          currentIndex) {
-
+                  if (index == currentIndex) {
                     return const RankingHeader(
-
-                      title:
-                          "厳選！おすすめ競馬サイト",
-
+                      title: "厳選！おすすめ競馬サイト",
                       icon: Icons.star,
-
-                      showRankingText:
-                          false,
-
+                      showRankingText: false,
                       showIcon: false,
                     );
                   }
@@ -602,25 +460,16 @@ class _HomePageState
                   // =========================
                   if (provider.sites.isEmpty &&
                       index == currentIndex) {
-
                     return const Padding(
-
                       padding: EdgeInsets.symmetric(
                         vertical: 20,
                       ),
-
                       child: Center(
-
                         child: Text(
-
                           "現在掲載サイトはありません",
-
                           style: TextStyle(
-
                             fontSize: 16,
-
-                            fontWeight:
-                                FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -629,30 +478,29 @@ class _HomePageState
 
                   currentIndex++;
 
-                  if (
-                      provider.sites.isNotEmpty &&
+                  // =========================
+                  // 掲載サイト一覧
+                  // =========================
+                  if (provider.sites.isNotEmpty &&
                       index <
                           currentIndex +
                               provider.sites.length) {
-
                     final siteIndex =
                         index - currentIndex;
 
-                    if (
-                        siteIndex < 0 ||
+                    if (siteIndex < 0 ||
                         siteIndex >=
                             provider.sites.length) {
-
                       return const SizedBox();
                     }
 
                     final SiteModel site =
                         provider.sites[siteIndex];
 
-                        return SiteCard(
-                          site: site,
-                        );
-                      }
+                    return SiteCard(
+                      site: site,
+                    );
+                  }
 
                   return const SizedBox(
                     height: 40,

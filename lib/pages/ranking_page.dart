@@ -135,7 +135,7 @@ class _RankingPageState
           // 日付
           // =========================
           date:
-              "2026-03-${10 + i}",
+              "2026-09-${10 + i}",
 
           // =========================
           // 金額
@@ -375,7 +375,7 @@ class _RankingPageState
 
                                         borderRadius:
                                             BorderRadius.circular(
-                                          20,
+                                          14,
                                         ),
                                       ),
 
@@ -396,8 +396,9 @@ class _RankingPageState
                                                     ? Colors.white
                                                     : Colors.indigo[900],
 
+                                            fontSize: 18,
                                             fontWeight:
-                                                FontWeight.bold,
+                                                FontWeight.w900,
                                           ),
                                         ),
                                       ),
@@ -454,7 +455,7 @@ class _RankingPageState
 
                                         borderRadius:
                                             BorderRadius.circular(
-                                          20,
+                                          14,
                                         ),
                                       ),
 
@@ -475,8 +476,9 @@ class _RankingPageState
                                                     ? Colors.white
                                                     : Colors.indigo[900],
 
+                                            fontSize: 18,
                                             fontWeight:
-                                                FontWeight.bold,
+                                                FontWeight.w900,
                                           ),
                                         ),
                                       ),

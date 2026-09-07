@@ -37,7 +37,7 @@ class RankingHeader extends StatelessWidget {
       ),
 
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
 
         // =========================
         // 背景色
@@ -56,8 +56,16 @@ class RankingHeader extends StatelessWidget {
             title,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
+
+              // =========================
+              // ⭐ 文字サイズを拡大
+              // =========================
+              fontSize: 22,
+
+              // =========================
+              // ⭐ 太字を強化
+              // =========================
+              fontWeight: FontWeight.w900,
             ),
           ),
 
@@ -69,8 +77,16 @@ class RankingHeader extends StatelessWidget {
               "ランキング",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
+
+                // =========================
+                // ⭐ 文字サイズを拡大
+                // =========================
+                fontSize: 22,
+
+                // =========================
+                // ⭐ 太字を強化
+                // =========================
+                fontWeight: FontWeight.w900,
               ),
             ),
 

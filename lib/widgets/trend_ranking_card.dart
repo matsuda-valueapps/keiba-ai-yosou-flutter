@@ -332,15 +332,38 @@ class TrendRankingCard extends StatelessWidget {
                             CrossAxisAlignment.start,
                         children: [
                           // =========================
-                          // サイト名
+                          // ⭐ サイト名
+                          //
+                          // 必ず1行で表示
+                          //
+                          // 6.6インチなどの広い画面では
+                          // fontSize: 20 を基本維持。
+                          //
+                          // 5.0インチなどの狭い画面で
+                          // 横幅が足りない場合のみ
+                          // 自動的に縮小。
+                          //
+                          // maxLines: 1
+                          // softWrap: false
+                          // により2行への折り返しを防止。
                           // =========================
-                          Text(
-                            ranking.siteName,
-                            style:
-                                const TextStyle(
-                              fontWeight:
-                                  FontWeight.w900,
-                              fontSize: 20,
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment:
+                                Alignment.centerLeft,
+                            child: Text(
+                              ranking.siteName,
+                              maxLines: 1,
+                              softWrap: false,
+                              overflow:
+                                  TextOverflow.visible,
+                              style:
+                                  const TextStyle(
+                                fontSize: 20,
+                                fontWeight:
+                                    FontWeight.w900,
+                                color:Color(0xFF1A237E),
+                              ),
                             ),
                           ),
 
@@ -375,41 +398,58 @@ class TrendRankingCard extends StatelessWidget {
                       // 数字 → Roboto
                       // 「回」→ Noto Sans JP
                       //
-                      // fontSize / fontWeight /
-                      // color は既存設定を維持
+                      // 6.6インチでは
+                      // 基本サイズを維持
+                      //
+                      // 5.0インチでは
+                      // 横幅に収まるよう自動縮小
+                      //
+                      // ⭐ RichText全体を
+                      // FittedBoxで包むことで
+                      // 「的中数：120回」を
+                      // 必ず1行で表示
                       // =========================
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            const TextSpan(
-                              text: "的中数：",
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 24,
-                                fontWeight:
-                                    FontWeight.w900,
-                              ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment:
+                              Alignment.centerLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: "的中数：",
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 24,
+                                    fontWeight:
+                                        FontWeight.w900,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ranking.hitCount
+                                      .toString(),
+                                  style:
+                                      GoogleFonts.roboto(
+                                    color: Colors.red,
+                                    fontSize: 30,
+                                    fontWeight:
+                                        FontWeight.w700,
+                                  ),
+                                ),
+                                const TextSpan(
+                                  text: "回",
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 27,
+                                    fontWeight:
+                                        FontWeight.w900,
+                                  ),
+                                ),
+                              ],
                             ),
-                            TextSpan(
-                              text: ranking.hitCount
-                                  .toString(),
-                              style: GoogleFonts.roboto(
-                                color: Colors.red,
-                                fontSize: 30,
-                                fontWeight:
-                                    FontWeight.w700,
-                              ),
-                            ),
-                            const TextSpan(
-                              text: "回",
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 27,
-                                fontWeight:
-                                    FontWeight.w900,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
@@ -431,7 +471,7 @@ class TrendRankingCard extends StatelessWidget {
                 MainAxisAlignment.center,
             children: [
               // =========================
-              // ブログ記事を読む
+              // 詳細はコチラ
               // =========================
               SizedBox(
                 width: 180,
@@ -483,6 +523,7 @@ class TrendRankingCard extends StatelessWidget {
                       style:
                           TextStyle(
                         color: Colors.white,
+                        fontSize: 16,
                         fontWeight:
                             FontWeight.bold,
                       ),
@@ -507,7 +548,7 @@ class TrendRankingCard extends StatelessWidget {
                 child: Container(
                   padding:
                       const EdgeInsets.all(
-                    12,
+                    14,
                   ),
                   decoration:
                       BoxDecoration(
@@ -515,7 +556,7 @@ class TrendRankingCard extends StatelessWidget {
                         Colors.indigo[900],
                     borderRadius:
                         BorderRadius.circular(
-                      10,
+                      14,
                     ),
                     boxShadow: const [
                       BoxShadow(
