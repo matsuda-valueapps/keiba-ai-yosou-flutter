@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
 
@@ -160,6 +161,120 @@ class _MainPageState
     });
   }
 
+  // =========================================================
+  // 🔥 アプリ終了確認ダイアログ
+  //
+  // Androidの戻るボタンを押した際に表示する。
+  //
+  // 「キャンセル」
+  //     ↓
+  // ダイアログを閉じてアプリを継続
+  //
+  // 「終了」
+  //     ↓
+  // アプリを終了
+  // =========================================================
+  Future<void> _showExitDialog() async {
+
+    final shouldExit =
+        await showDialog<bool>(
+
+      context: context,
+
+      barrierDismissible: false,
+
+      builder: (dialogContext) {
+
+        return AlertDialog(
+
+          // =========================
+          // ダイアログ角丸
+          // =========================
+          shape:
+              RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(16),
+          ),
+
+          // =========================
+          // タイトル
+          // =========================
+          title: const Text(
+            'アプリを終了しますか？',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF1A237E),
+            ),
+          ),
+
+          // =========================
+          // 🔥 ボタンを中央揃え
+          // =========================
+          actionsAlignment:
+              MainAxisAlignment.center,
+          
+          // =========================
+          // ボタン
+          // =========================
+          actions: [
+
+            // =========================
+            // キャンセル
+            // =========================
+            TextButton(
+              onPressed: () {
+
+                Navigator.of(
+                  dialogContext,
+                ).pop(false);
+              },
+
+              child: const Text(
+                'キャンセル',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF3F51B5),
+                ),
+              ),
+            ),
+
+            // =========================
+            // 終了
+            // =========================
+            TextButton(
+              onPressed: () {
+
+                Navigator.of(
+                  dialogContext,
+                ).pop(true);
+              },
+
+              child: const Text(
+                '終了する',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF3F51B5),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    // =========================
+    // 🔥 終了確認
+    // =========================
+    if (shouldExit == true) {
+
+      SystemNavigator.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -167,106 +282,138 @@ class _MainPageState
         context.watch<
             MainPageProvider>();
 
-    return Scaffold(
-
-      backgroundColor:
-          Colors.black,
+    return PopScope(
 
       // =========================
-      // 🔥 IndexedStack化（超重要）
+      // 🔥 Android戻るボタンによる
+      // Navigator popを禁止
       //
-      // BottomNavigation消失防止
-      // タブ状態保持
-      // スクロール位置保持
+      // これにより、
+      // いきなりアプリが終了するのを防ぐ
       // =========================
-      body: IndexedStack(
-
-        index: provider.index,
-
-        children: pages,
-      ),
+      canPop: false,
 
       // =========================
-      // 🔥 BottomNavigation
+      // 🔥 戻る操作を検知
       // =========================
-      bottomNavigationBar:
-          MainBottomNavigation(
+      onPopInvokedWithResult:
+          (didPop, result) {
 
-        currentIndex: provider.index,
+        // =========================
+        // 既にpopされている場合は
+        // 何もしない
+        // =========================
+        if (didPop) {
+          return;
+        }
 
-        onTap: (i) {
+        // =========================
+        // 🔥 終了確認ダイアログ
+        // =========================
+        _showExitDialog();
+      },
 
-          final currentIndex =
-              provider.index;
+      child: Scaffold(
 
-          // =========================
-          // 🔥 ランキングタブ押下時
-          // 必ず獲得金額へ戻す
-          // =========================
-          if (i == 1) {
+        backgroundColor:
+            Colors.black,
 
+        // =========================
+        // 🔥 IndexedStack化（超重要）
+        //
+        // BottomNavigation消失防止
+        // タブ状態保持
+        // スクロール位置保持
+        // =========================
+        body: IndexedStack(
+
+          index: provider.index,
+
+          children: pages,
+        ),
+
+        // =========================
+        // 🔥 BottomNavigation
+        // =========================
+        bottomNavigationBar:
+            MainBottomNavigation(
+
+          currentIndex: provider.index,
+
+          onTap: (i) {
+
+            final currentIndex =
+                provider.index;
+
+            // =========================
+            // 🔥 ランキングタブ押下時
+            // 必ず獲得金額へ戻す
+            // =========================
+            if (i == 1) {
+
+              context
+                  .read<RankingProvider>()
+                  .changeTab(0);
+            }
+
+            // =========================
+            // 🔥 同じタブ押下
+            // =========================
+            if (currentIndex == i) {
+
+              context
+                  .read<ScrollTopProvider>()
+                  .scrollToTop(i);
+
+              if (i == 4) {
+
+                context
+                    .read<PredictionProvider>()
+                    .reset();
+
+                context
+                    .read<PredictionProvider>()
+                    .loadToday();
+              }
+
+              return;
+            }
+
+            // =========================
+            // 🔥 バナー変更
+            // =========================
             context
-                .read<RankingProvider>()
-                .changeTab(0);
-          }
+                .read<BannerProvider>()
+                .pickRandomBanner();
 
-          // =========================
-          // 🔥 同じタブ押下
-          // =========================
-          if (currentIndex == i) {
+            // =========================
+            // 🔥 タブ切替
+            // =========================
+            context
+                .read<MainPageProvider>()
+                .changeIndex(i);
 
+            // =========================
+            // 🔥 TOPへ戻す
+            // =========================
             context
                 .read<ScrollTopProvider>()
                 .scrollToTop(i);
 
+            // =========================
+            // 🔥 AI予想ロード
+            // =========================
             if (i == 4) {
 
-              context
-                  .read<PredictionProvider>()
-                  .reset();
+              final predictionProvider =
+                  context.read<PredictionProvider>();
 
-              context
-                  .read<PredictionProvider>()
-                  .loadToday();
+              predictionProvider.reset();
+
+              predictionProvider.loadToday();
             }
-
-            return;
-          }
-
-          // =========================
-          // 🔥 バナー変更
-          // =========================
-          context
-              .read<BannerProvider>()
-              .pickRandomBanner();
-
-          // =========================
-          // 🔥 タブ切替
-          // =========================
-          context
-              .read<MainPageProvider>()
-              .changeIndex(i);
-
-          // =========================
-          // 🔥 TOPへ戻す
-          // =========================
-          context
-              .read<ScrollTopProvider>()
-              .scrollToTop(i);
-
-          // =========================
-          // 🔥 AI予想ロード
-          // =========================
-          if (i == 4) {
-
-            final predictionProvider =
-                context.read<PredictionProvider>();
-
-            predictionProvider.reset();
-
-            predictionProvider.loadToday();
-          }
-        },
+          },
+        ),
       ),
     );
   }

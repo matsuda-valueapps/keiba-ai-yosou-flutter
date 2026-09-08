@@ -179,8 +179,50 @@ class _PredictionPageState
 
         return AlertDialog(
 
+          // =========================
+          // 🔥 ダイアログ横幅
+          // 少しコンパクトに調整
+          // =========================
+          insetPadding:
+              const EdgeInsets.symmetric(
+            horizontal: 56,
+            vertical: 24,
+          ),
+
+          // =========================
+          // 🔥 タイトル余白
+          // =========================
+          titlePadding:
+              const EdgeInsets.fromLTRB(
+            24,
+            18,
+            24,
+            6,
+          ),
+
+          // =========================
+          // 🔥 コンテンツ余白
+          // =========================
+          contentPadding:
+              const EdgeInsets.fromLTRB(
+            24,
+            0,
+            24,
+            12,
+          ),
+
+          // =========================
+          // 🔥 ダイアログタイトル
+          // 中央揃え
+          // =========================
           title: const Text(
-            "競馬場を選択",
+            '競馬場を選択',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              color: Color(0xFF1A237E),
+            ),
           ),
 
           content: SizedBox(
@@ -196,7 +238,33 @@ class _PredictionPageState
 
                 return ListTile(
 
-                  title: Text(place),
+                  // =========================
+                  // 🔥 競馬場名
+                  // 中央揃え
+                  // =========================
+                  title: Text(
+                    place,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF3F51B5),
+                    ),
+                  ),
+
+                  // =========================
+                  // 🔥 横方向の余白を削減
+                  // =========================
+                  contentPadding:
+                      EdgeInsets.zero,
+
+                  // =========================
+                  // 🔥 項目の高さを少し縮小
+                  // =========================
+                  visualDensity:
+                      const VisualDensity(
+                    vertical: -2,
+                  ),
 
                   onTap: () {
 
@@ -379,7 +447,7 @@ class _PredictionPageState
               style: TextStyle(
 
                 color: Color(0xFF1A237E),
-                
+
                 fontWeight:
                     FontWeight.w900,
 
@@ -522,7 +590,6 @@ class _PredictionPageState
 
             child:
                 provider.isLoading
-
                     ? const Center(
                         child:
                             CircularProgressIndicator(),

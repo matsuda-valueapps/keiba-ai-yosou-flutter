@@ -269,7 +269,7 @@ class _BlogPageState
           children: [
 
             // =========================
-            // 競馬ブログを読む！
+            // 競馬ブログを読む
             // =========================
             Expanded(
 
@@ -341,7 +341,7 @@ class _BlogPageState
 
                     child: const Text(
 
-                      "ブログの続きを読む",
+                      "競馬ブログを読む",
 
                       style: TextStyle(
 

@@ -291,13 +291,13 @@ class _BlogDetailPageState
         appBar: AppBar(
 
           backgroundColor:
-              Color(0xFF0D47A1),
+              Color(0xFF1A237E),
 
           centerTitle: true,
 
           title: const Text(
 
-            "Blog Detail",
+            "競馬ブログ詳細",
 
             style: TextStyle(
               color: Colors.white,
@@ -715,7 +715,7 @@ class _BlogDetailPageState
                                       BoxDecoration(
 
                                     color:
-                                        Colors.blue,
+                                        Colors.indigo[900],
 
                                     borderRadius:
                                         BorderRadius.circular(
