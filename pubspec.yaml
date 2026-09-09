@@ -52,7 +52,7 @@ flutter:
     - assets/images/medal_8th.png
     - assets/images/medal_9th.png
     - assets/images/medal_10th.png
-    - assets/icon/icon.png
+    - assets/icon/app_icon.png
     - assets/icon/home.png
     - assets/icon/ranking.png
     - assets/icon/review.png
@@ -65,10 +65,10 @@ flutter_launcher_icons:
 
   ios: true
 
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/icon/app_icon.png"
 
   adaptive_icon_background:
-      "#0D47A1"
+      "#1A237E"
 
   adaptive_icon_foreground:
-      "assets/icon/icon.png"
+      "assets/icon/app_icon.png"

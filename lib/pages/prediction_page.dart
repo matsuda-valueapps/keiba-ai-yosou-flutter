@@ -30,8 +30,36 @@ bool isExcluded(String place) {
   );
 }
 
-class PredictionPage extends StatefulWidget {
+/// =========================
+/// 🔥 競馬場名表示用
+/// 余計な空白を除去
+/// 「競馬場」の二重付加を防止
+/// =========================
+String getDisplayPlaceName(String place) {
+  final trimmedPlace = place.trim();
 
+  // =========================
+  // 🔥 未選択
+  // =========================
+  if (trimmedPlace.isEmpty) {
+    return "競馬場を選択";
+  }
+
+  // =========================
+  // 🔥 すでに「競馬場」が付いている場合
+  // 二重付加を防止
+  // =========================
+  if (trimmedPlace.endsWith("競馬場")) {
+    return trimmedPlace;
+  }
+
+  // =========================
+  // 🔥 「競馬場」を付加
+  // =========================
+  return "$trimmedPlace競馬場";
+}
+
+class PredictionPage extends StatefulWidget {
   const PredictionPage({
     super.key,
   });
@@ -43,12 +71,10 @@ class PredictionPage extends StatefulWidget {
 
 class _PredictionPageState
     extends State<PredictionPage>
-
     // =========================
     // 🔥 KeepAlive
     // =========================
     with AutomaticKeepAliveClientMixin {
-
   // =========================
   // 🔥 KeepAlive有効
   // =========================
@@ -62,12 +88,10 @@ class _PredictionPageState
 
   @override
   void initState() {
-
     super.initState();
 
     WidgetsBinding.instance
         .addPostFrameCallback((_) async {
-
       if (!mounted) return;
 
       /// =========================
@@ -87,12 +111,10 @@ class _PredictionPageState
           context.read<BannerProvider>();
 
       try {
-
         /// =========================
         /// 🔥 予想取得
         /// =========================
-        await predictionProvider
-            .reloadToday();
+        await predictionProvider.reloadToday();
 
         if (!mounted) return;
 
@@ -107,9 +129,7 @@ class _PredictionPageState
         /// 🔥 ランダムバナー
         /// =========================
         bannerProvider.pickRandomBanner();
-
       } catch (e) {
-
         debugPrint(
           "PredictionPage init error: $e",
         );
@@ -121,7 +141,6 @@ class _PredictionPageState
   // ⭐ 日付
   // =========================
   String getFormattedDate() {
-
     final now = DateTime.now();
 
     const weekdays = [
@@ -148,7 +167,6 @@ class _PredictionPageState
     BuildContext context,
     PredictionProvider provider,
   ) {
-
     final filteredPlaces = provider
         .places
         .where(
@@ -158,10 +176,8 @@ class _PredictionPageState
         .toList();
 
     if (filteredPlaces.isEmpty) {
-
       ScaffoldMessenger.of(context)
           .showSnackBar(
-
         const SnackBar(
           content:
               Text("開催中の競馬場がありません"),
@@ -172,13 +188,9 @@ class _PredictionPageState
     }
 
     showDialog(
-
       context: context,
-
       builder: (_) {
-
         return AlertDialog(
-
           // =========================
           // 🔥 ダイアログ横幅
           // 少しコンパクトに調整
@@ -226,18 +238,12 @@ class _PredictionPageState
           ),
 
           content: SizedBox(
-
             width: double.maxFinite,
-
             child: ListView(
-
               shrinkWrap: true,
-
               children:
                   filteredPlaces.map((place) {
-
                 return ListTile(
-
                   // =========================
                   // 🔥 競馬場名
                   // 中央揃え
@@ -267,7 +273,6 @@ class _PredictionPageState
                   ),
 
                   onTap: () {
-
                     provider.selectPlace(
                       place,
                     );
@@ -290,33 +295,28 @@ class _PredictionPageState
     PredictionProvider provider,
     RaceModel race,
   ) {
-
     final picks = race.prediction;
 
     if (picks.isEmpty) {
       return const SizedBox();
     }
 
-    final p1 =
-        picks.isNotEmpty
-            ? picks[0]
-            : null;
+    final p1 = picks.isNotEmpty
+        ? picks[0]
+        : null;
 
-    final p2 =
-        picks.length >= 2
-            ? picks[1]
-            : null;
+    final p2 = picks.length >= 2
+        ? picks[1]
+        : null;
 
-    final p3 =
-        picks.length >= 3
-            ? picks[2]
-            : null;
+    final p3 = picks.length >= 3
+        ? picks[2]
+        : null;
 
     Widget buildBox(
       int? number,
       String label,
     ) {
-
       if (number == null) {
         return const SizedBox();
       }
@@ -329,76 +329,47 @@ class _PredictionPageState
       double fontSize;
 
       if (label == "◎") {
-
         labelColor = Colors.red;
-
         fontSize = 30;
-
       } else if (label == "○") {
-
         labelColor =
             Colors.blue[900]!;
-
         fontSize = 27;
-
       } else {
-
         labelColor = Colors.black;
-
         fontSize = 25;
       }
 
       return Row(
         children: [
-
           Text(
-
             label,
-
             style: TextStyle(
-
               fontWeight:
                   FontWeight.bold,
-
               fontSize: fontSize,
-
               color: labelColor,
             ),
           ),
-
           const SizedBox(
             width: 6,
           ),
-
           Container(
-
             width: 42,
             height: 42,
-
             alignment:
                 Alignment.center,
-
             decoration: BoxDecoration(
-
               color: color,
-
               borderRadius:
-                  BorderRadius.circular(
-                6,
-              ),
+                  BorderRadius.circular(6),
             ),
-
             child: Text(
-
               "$number",
-
               style: TextStyle(
-
                 fontWeight:
                     FontWeight.bold,
-
                 fontSize: 16,
-
                 color:
                     number == 1 ||
                             number == 5
@@ -413,68 +384,45 @@ class _PredictionPageState
 
     return Column(
       children: [
-
         Text(
-
           "${race.place}${race.raceNumber}R",
-
           style: const TextStyle(
-
             color: Color(0xFF1A237E),
-
             fontWeight:
                 FontWeight.bold,
-
             fontSize: 18,
           ),
         ),
-
         const SizedBox(
           height: 8,
         ),
-
         Row(
-
           mainAxisAlignment:
               MainAxisAlignment.center,
-
           children: [
-
             const Text(
-
               "推奨馬",
-
               style: TextStyle(
-
                 color: Color(0xFF1A237E),
-
                 fontWeight:
                     FontWeight.w900,
-
                 fontSize: 20,
               ),
             ),
-
             const SizedBox(
               width: 10,
             ),
-
             buildBox(p1, "◎"),
-
             const SizedBox(
               width: 10,
             ),
-
             buildBox(p2, "○"),
-
             const SizedBox(
               width: 10,
             ),
-
             buildBox(p3, "▲"),
           ],
         ),
-
         const Divider(
           height: 25,
         ),
@@ -486,7 +434,6 @@ class _PredictionPageState
   Widget build(
     BuildContext context,
   ) {
-
     // =========================
     // 🔥 KeepAlive必須
     // =========================
@@ -503,8 +450,7 @@ class _PredictionPageState
     // =========================
     final scrollController =
         context
-            .read<
-                ScrollTopProvider>()
+            .read<ScrollTopProvider>()
             .predictionController;
 
     /// =========================
@@ -513,9 +459,7 @@ class _PredictionPageState
     final uniqueMap =
         <String, RaceModel>{};
 
-    for (final race
-        in provider.races) {
-
+    for (final race in provider.races) {
       final key =
           "${race.place}_${race.raceNumber}";
 
@@ -534,10 +478,8 @@ class _PredictionPageState
               ),
             )
             .toList()
-
           ..sort(
             (a, b) {
-
               final placeCompare =
                   a.place.compareTo(
                 b.place,
@@ -547,56 +489,40 @@ class _PredictionPageState
                 return placeCompare;
               }
 
-              return a.raceNumber
-                  .compareTo(
+              return a.raceNumber.compareTo(
                 b.raceNumber,
               );
             },
           );
 
     return Scaffold(
-
       backgroundColor:
           Colors.grey[100],
-
       appBar: AppBar(
-
         backgroundColor:
             Color(0xFF1A237E),
-
         centerTitle: true,
-
         automaticallyImplyLeading:
             false,
-
         title: const Text(
-
           "競馬AI予想",
-
           style: TextStyle(
-
             color: Colors.white,
-
             fontWeight:
                 FontWeight.bold,
           ),
         ),
       ),
-
       body: Column(
         children: [
-
           Expanded(
-
             child:
                 provider.isLoading
                     ? const Center(
                         child:
                             CircularProgressIndicator(),
                       )
-
                     : ListView(
-
                         // =========================
                         // 🔥 TOPスクロール制御
                         // =========================
@@ -612,30 +538,23 @@ class _PredictionPageState
                         ),
 
                         children: [
-
                           const SizedBox(
                             height: 12,
                           ),
 
                           Padding(
-
                             padding:
                                 const EdgeInsets
                                     .symmetric(
                               horizontal: 16,
                             ),
-
                             child: ClipRRect(
-
                               borderRadius:
                                   BorderRadius.circular(
                                 18,
                               ),
-
                               child: Image.asset(
-
                                 'assets/images/prediction_header.png',
-
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -646,40 +565,36 @@ class _PredictionPageState
                           ),
 
                           Container(
-
                             margin:
                                 const EdgeInsets
                                     .symmetric(
                               horizontal: 16,
                               vertical: 6,
                             ),
-
                             padding:
                                 const EdgeInsets.all(
                               12,
                             ),
-
                             alignment:
                                 Alignment.center,
-
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: const Color(0xFF1A237E),
+                            decoration:
+                                BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(
+                                12,
+                              ),
+                              color: const Color(
+                                0xFF1A237E,
+                              ),
                             ),
-
                             child: Text(
-
                               getFormattedDate(),
-
                               style:
                                   const TextStyle(
-
                                 color:
                                     Colors.white,
-
                                 fontWeight:
                                     FontWeight.w900,
-
                                 fontSize: 24,
                               ),
                             ),
@@ -690,79 +605,105 @@ class _PredictionPageState
                           ),
 
                           GestureDetector(
-
                             onTap: () {
-
                               showPlaceDialog(
                                 context,
                                 provider,
                               );
                             },
-
                             child: Container(
-
                               margin:
                                   const EdgeInsets
                                       .symmetric(
                                 horizontal: 16,
                               ),
-
-                              padding: const EdgeInsets.symmetric(
+                              padding:
+                                  const EdgeInsets
+                                      .symmetric(
                                 horizontal: 18,
                                 vertical: 14,
                               ),
-
                               decoration:
                                   BoxDecoration(
-
-                                color: Colors.white,
-
+                                color:
+                                    Colors.white,
                                 borderRadius:
                                     BorderRadius.circular(
                                   12,
                                 ),
-
                                 border: Border.all(
-                                  color:
-                                      Colors.indigo.shade900,
+                                  color: Colors
+                                      .indigo
+                                      .shade900,
                                   width: 2,
                                 ),
                               ),
 
-                              child: Row(
-
-                                children: [
-
-                                  Expanded(
-
-                                    child: Text(
-
-                                      provider.selectedPlace.isEmpty
-                                          ? "競馬場を選択"
-                                          : provider.selectedPlace,
-
-                                      style: const TextStyle(
-
-                                        fontSize: 20,
-
-                                        fontWeight: FontWeight.w900,
-
-                                        color: Color(0xFF1A237E),
+                              // =========================
+                              // 🔥 競馬場選択欄
+                              // 中央揃え + 右側に▼
+                              // =========================
+                              child: SizedBox(
+                                height: 36,
+                                width:
+                                    double.infinity,
+                                child: Stack(
+                                  alignment:
+                                      Alignment.center,
+                                  children: [
+                                    // =========================
+                                    // 🔥 競馬場名
+                                    // 中央揃え
+                                    // =========================
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets
+                                              .symmetric(
+                                        horizontal: 52,
                                       ),
-
-                                      overflow: TextOverflow.ellipsis,
+                                      child: Align(
+                                        alignment:
+                                            Alignment.center,
+                                        child: Text(
+                                          getDisplayPlaceName(
+                                            provider
+                                                .selectedPlace,
+                                          ),
+                                          textAlign:
+                                              TextAlign.center,
+                                          maxLines: 1,
+                                          overflow:
+                                              TextOverflow
+                                                  .ellipsis,
+                                          style:
+                                              const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight:
+                                                FontWeight.w900,
+                                            color: Color(
+                                              0xFF1A237E,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
 
-                                  const Icon(
-
-                                    Icons.expand_more,
-
-                                    size: 36,
-
-                                    color: Color(0xFF1A237E),
-                                  ),
-                                ],
+                                    // =========================
+                                    // 🔥 ▼アイコン
+                                    // 右側固定
+                                    // =========================
+                                    const Positioned(
+                                      right: 0,
+                                      child: Icon(
+                                        Icons.expand_more,
+                                        size: 36,
+                                        color: Color(
+                                          0xFF1A237E,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -772,20 +713,17 @@ class _PredictionPageState
                           ),
 
                           Padding(
-
-                            padding: const EdgeInsets.symmetric(
+                            padding:
+                                const EdgeInsets.symmetric(
                               horizontal: 16,
                             ),
-
                             child: Text(
-
                               "※推奨馬は的中を保証するものではありません。",
-
                               style: TextStyle(
-
                                 fontSize: 14,
-
-                                color: Colors.grey.shade600,
+                                color: Colors
+                                    .grey
+                                    .shade600,
                               ),
                             ),
                           ),
@@ -799,7 +737,6 @@ class _PredictionPageState
                           /// =========================
                           ...filteredRaces.map(
                             (race) {
-
                               return raceCard(
                                 provider,
                                 race,
@@ -812,10 +749,12 @@ class _PredictionPageState
                           ),
 
                           const RankingHeader(
-                            title: "厳選！おすすめ競馬サイト",
-                              icon: Icons.star,
-                              showRankingText: false,
-                              showIcon: false,
+                            title:
+                                "厳選！おすすめ競馬サイト",
+                            icon: Icons.star,
+                            showRankingText:
+                                false,
+                            showIcon: false,
                           ),
 
                           const SizedBox(
@@ -824,7 +763,6 @@ class _PredictionPageState
 
                           ...homeProvider.sites.map(
                             (e) {
-
                               return SiteCard(
                                 site: e,
                               );
