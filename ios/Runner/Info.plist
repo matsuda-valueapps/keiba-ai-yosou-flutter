@@ -15,7 +15,7 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 
 	<key>CFBundleDisplayName</key>
-	<string>Keiba Ai Yosou</string>
+	<string>競馬AI予想</string>
 
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -27,7 +27,7 @@
 	<string>6.0</string>
 
 	<key>CFBundleName</key>
-	<string>keiba_ai_yosou</string>
+	<string>競馬AI予想</string>
 
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
